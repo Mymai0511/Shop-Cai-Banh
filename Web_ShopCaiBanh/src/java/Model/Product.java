@@ -100,4 +100,9 @@ public class Product {
         this.createDate = createDate;
     }
 
+    @Override
+    public String toString() {
+        return "Product{" + "id=" + id + ", name=" + name + ", price=" + price + ", stock=" + stock + ", category=" + category + ", img=" + img + ", description=" + description + ", createDate=" + createDate + '}';
+    }
+
 }

@@ -42,12 +42,12 @@ create table Category
 create table Product(
 	product_id int identity(1,1) primary key,
 	product_name nvarchar(100)    not null,
-	price float NOT NULL,
-	stock nvarchar(20) NOT NULL,
+	price float ,
+	stock nvarchar(20) ,
 	category_id int NOT NULL,
 	img	 nvarchar(200) NOT NULL,
-	description nvarchar(10) NOT NULL,
-	create_date DATETIME  NOT NULL,
+	description nvarchar(10) ,
+	create_date DATETIME  ,
 	foreign key (category_id) references Category(category_id)
 );
 
