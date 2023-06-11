@@ -100,16 +100,17 @@
 
                 <div class="col-sm-9">
                     <div class="row">
+                        <!-- Hiện thị menu- lấy dữ liệu từ sql -->
                         <c:forEach items="${listP}" var="o">
                             <div class="col-12 col-md-6 col-lg-4">
                                 <div class="card">
-                                    <img class="card-img-top" src="${o.image}" alt="Card image cap">
+                                    <img class="card-img-top" src="${o.img}" alt="Card image cap">
                                     <div class="card-body">
                                         <h4 class="card-title show_txt"><a href="#" title="View Product">${o.name}</a></h4>
-                                        <p class="card-text show_txt">${o.title}</p>
+                                        <p class="card-text show_txt">${o.detail}</p>
                                         <div class="row">
                                             <div class="col">
-                                                <p class="btn btn-danger btn-block">${o.price} $</p>
+                                                <p class="btn btn-danger btn-block">${o.price}00</p>
                                             </div>
                                             <div class="col">
                                                 <a href="#" class="btn btn-success btn-block">Add to cart</a>

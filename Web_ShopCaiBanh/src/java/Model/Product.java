@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Model;
 
-import java.sql.Date;
 
 /**
  *
@@ -16,24 +10,34 @@ public class Product {
     private int id;
     private String name;
     private double price;
-    private int stock;
+    private String stock;
     private Category category;
     private String img;
-    private String description;
-    private Date createDate;
+    private String detail;
+    private String time;
 
     public Product() {
     }
-   
-    public Product(int id, String name, double price, int stock, Category category, String img, String description, Date createDate) {
+
+    public Product(int id, String name, double price, Category category, String img, String detail, String time) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.category = category;
+        this.img = img;
+        this.detail = detail;
+        this.time = time;
+    }
+
+    public Product(int id, String name, double price, String stock, Category category, String img, String detail, String time) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.stock = stock;
         this.category = category;
         this.img = img;
-        this.description = description;
-        this.createDate = createDate;
+        this.detail = detail;
+        this.time = time;
     }
 
     public int getId() {
@@ -60,11 +64,11 @@ public class Product {
         this.price = price;
     }
 
-    public int getStock() {
+    public String getStock() {
         return stock;
     }
 
-    public void setStock(int stock) {
+    public void setStock(String stock) {
         this.stock = stock;
     }
 
@@ -84,25 +88,25 @@ public class Product {
         this.img = img;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDetail() {
+        return detail;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDetail(String detail) {
+        this.detail = detail;
     }
 
-    public Date getCreateDate() {
-        return createDate;
+    public String getTime() {
+        return time;
     }
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    public void setTime(String time) {
+        this.time = time;
     }
 
     @Override
     public String toString() {
-        return "Product{" + "id=" + id + ", name=" + name + ", price=" + price + ", stock=" + stock + ", category=" + category + ", img=" + img + ", description=" + description + ", createDate=" + createDate + '}';
+        return "Product{" + "id=" + id + ", name=" + name + ", price=" + price + ", stock=" + stock + ", category=" + category + ", img=" + img + ", detail=" + detail + ", time=" + time + '}';
     }
-
+    
 }

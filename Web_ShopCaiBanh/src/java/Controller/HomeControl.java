@@ -5,7 +5,9 @@
 package Controller;
 
 import DAL.CategoryDAO;
+import DAL.ProductDAO;
 import Model.Category;
+import Model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -35,10 +37,14 @@ public class HomeControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         //b1: get data from DAO
         CategoryDAO c = new CategoryDAO();// gọi CategoryDAO
-        List<Category> list = c.getAll();
+        List<Category> listCategorys = c.getAll();
 
+        ProductDAO p = new ProductDAO();
+        List<Product> listProduct = p.getAll();
+        
         //b2: det data to jsp
-        request.setAttribute("listC", list);// đẩy list thành listC lên trang jsp
+        request.setAttribute("listC", listCategorys);// đẩy list thành listC lên trang jsp
+        request.setAttribute("listP", listProduct);
         request.getRequestDispatcher("Home.jsp").forward(request, response);
         
     }

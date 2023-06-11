@@ -10,7 +10,6 @@ import java.sql.PreparedStatement;// lệnh có đối số
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.naming.spi.DirStateFactory;
 
 /**
  *
