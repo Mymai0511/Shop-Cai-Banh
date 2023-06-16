@@ -20,8 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author DELL
  */
-//URL: home
-public class HomeControl extends HttpServlet {
+public class CategorySevlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,20 +34,19 @@ public class HomeControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        //b1: get data from DAO
+        String cateID = request.getParameter("cid");
+        // đã lấy đc category id về
+        ProductDAO pDAO = new ProductDAO();
+        List<Product> listCID = pDAO.getProductByCID(cateID);
+        Product pLast = pDAO.getLast();
+        
         CategoryDAO c = new CategoryDAO();// gọi CategoryDAO
         List<Category> listCategorys = c.getAll();
-        //b2: det data to jsp
-        request.setAttribute("listC", listCategorys);// đẩy list thành listC lên trang jsp
 
-        ProductDAO p = new ProductDAO();
-        
-        Product pLast = p.getLast();
+        request.setAttribute("listC", listCategorys);// đẩy list thành listC lên trang jsp
+        request.setAttribute("tag", cateID);
         request.setAttribute("p", pLast);
-        
-        List<Product> listProduct = p.getAll();
-        request.setAttribute("listP", listProduct);
-        
+        request.setAttribute("listP", listCID);
         request.getRequestDispatcher("Home.jsp").forward(request, response);
 
     }

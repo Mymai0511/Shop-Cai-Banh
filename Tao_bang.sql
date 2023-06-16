@@ -35,8 +35,8 @@ create table Users(
 
 create table Category
 (
-	category_id int identity(1,1) primary key,
-	category_name nvarchar(100)
+	category_id int primary key NOT Null,
+	category_name nvarchar(100) not null
 );
 
 create table Product(
@@ -44,10 +44,10 @@ create table Product(
 	product_name nvarchar(100)    not null,
 	price float ,
 	stock nvarchar(20) ,
-	category_id int NOT NULL,
 	img	 nvarchar(200) NOT NULL,
-	description nvarchar(10) ,
-	create_date DATETIME  ,
+	title nvarchar(500) ,
+	description nvarchar(200)  ,
+	category_id int NOT NULL,
 	foreign key (category_id) references Category(category_id)
 );
 
