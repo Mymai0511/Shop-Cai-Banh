@@ -7,9 +7,9 @@ GO
 go
 SET IDENTITY_INSERT Users off
 GO
-INSERT INTO Users ( user_name, email, password, address, gender, phone, role_id) values (N'Mai Thị Trà My', 'mymie797@gmail.com', '12345', N'tỉnh Nam Đinh', 1, '0948766710',2);
-INSERT INTO Users ( user_name, email, password, address, gender, phone, role_id) values (N'Vũ Quốc Việt', 'vietngo@gmail.com', '123456', N'tỉnh Hưng Yên', 0, '0948766711',1);
-INSERT INTO Users ( user_name, email, password, address, gender, phone, role_id) values (N'Triệu Tiến Đức', 'ducxinh@gmail.com', '123457', N'Hà Nội', 0, '0948766712',1 );
+INSERT INTO Users ( user_name, email, password, address, gender, phone, role_id) values ('mai my', 'mymie797@gmail.com', '12345', N'tỉnh Nam Đinh', 1, '0948766710',2);
+INSERT INTO Users ( user_name, email, password, address, gender, phone, role_id) values ('quoc viet', 'vietngo@gmail.com', '123456', N'tỉnh Hưng Yên', 0, '0948766711',1);
+INSERT INTO Users ( user_name, email, password, address, gender, phone, role_id) values ('tien duc', 'ducxinh@gmail.com', '123457', N'Hà Nội', 0, '0948766712',1 );
 INSERT INTO Users ( user_name, email, password, address, gender, phone, role_id) values (N'Nguyễn Hải Nam', 'namlanh@gmail.com', '1234568', N'tỉnh Hà Nội', 0, '0948766713',1);
 INSERT INTO Users ( user_name, email, password, address, gender, phone, role_id) values (N'Mai Thùy Dương', 'duongchi@gmail.com', '1234579', N'tỉnh Hải Phòng', 1, '0948766714',1 );
 INSERT INTO Users ( user_name, email, password, address, gender, phone, role_id) values (N'Trần Văn Phi', 'phingu@gmail.com', '012345', N'tỉnh Nam Định', 0, '0948766715',1 );

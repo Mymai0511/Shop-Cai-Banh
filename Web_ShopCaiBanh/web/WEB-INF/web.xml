@@ -16,6 +16,10 @@
         <servlet-name>SearchControl</servlet-name>
         <servlet-class>Controller.SearchControl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoginControl</servlet-name>
+        <servlet-class>Controller.LoginControl</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeControl</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>SearchControl</servlet-name>
         <url-pattern>/search</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginControl</servlet-name>
+        <url-pattern>/login</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
