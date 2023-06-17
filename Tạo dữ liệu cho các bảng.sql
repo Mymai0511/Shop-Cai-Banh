@@ -7,6 +7,11 @@ GO
 go
 SET IDENTITY_INSERT Users off
 GO
+INSERT INTO Users ( user_name, email, password, address, gender, phone, role_id) values ('mai', 'mymie797@gmail.com', '12345', N'tỉnh Nam Đinh', 1, '0948766710',2);
+INSERT INTO Users ( user_name, email, password, address, gender, phone, role_id) values ('mai1', 'mymie797@gmail.com', '12345', N'tỉnh Nam Đinh', 1, '0948766710',2);
+INSERT INTO Users ( user_name, email, password, address, gender, phone, role_id) values ('Mai Thị Trà My', 'mymie797@gmail.com', '12345', N'tỉnh Nam Đinh', 1, '0948766710',2);
+
+
 INSERT INTO Users ( user_name, email, password, address, gender, phone, role_id) values ('mai my', 'mymie797@gmail.com', '12345', N'tỉnh Nam Đinh', 1, '0948766710',2);
 INSERT INTO Users ( user_name, email, password, address, gender, phone, role_id) values ('quoc viet', 'vietngo@gmail.com', '123456', N'tỉnh Hưng Yên', 0, '0948766711',1);
 INSERT INTO Users ( user_name, email, password, address, gender, phone, role_id) values ('tien duc', 'ducxinh@gmail.com', '123457', N'Hà Nội', 0, '0948766712',1 );

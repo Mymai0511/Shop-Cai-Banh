@@ -43,7 +43,7 @@ public class UserDao extends DBContext {
         return list;
     }
         public User loginByName(String nameString, String passString) {
-        User userN = new User();
+            User userN = new User();
         // lấy dữ liệu bảng product+ category
         String sql = "select * from Roles right join users on Roles.role_id = Users.role_id\n" +
                     "where user_name = ? and password = ?";
@@ -61,12 +61,13 @@ public class UserDao extends DBContext {
                 u.setAddress(rs.getString("address"));
                 u.setGender(rs.getBoolean("gender"));
                 u.setPhone(rs.getString("phone"));
-                u.setRole(new Role(rs.getInt("role_id"), rs.getString("role_name")));
+                u.setRole(new Role(rs.getInt(1), rs.getString("role_name")));
+                return u;
             }
         } catch (SQLException e) {
             System.out.println(e);
         }
-        return userN;
+        return null;
     }
     
         //test có kết nối được với database không
@@ -74,6 +75,7 @@ public class UserDao extends DBContext {
         UserDao p = new UserDao();
         User u = p.loginByName("mai my", "12345");
         List<User> list = p.getAll();
+        System.out.println(list);
         System.out.println(u);
     } 
 }
