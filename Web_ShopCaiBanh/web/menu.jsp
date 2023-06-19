@@ -25,7 +25,7 @@
                     <a class="nav-link" href="#">Đăng xuất</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Login.jsp">Đăng nhập</a>
+                    <a class="nav-link" href="login.jsp">Đăng nhập</a>
                 </li>
             </ul>
 

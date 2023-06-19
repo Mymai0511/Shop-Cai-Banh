@@ -1,76 +1,88 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<!------ Include the above in your HEAD tag ---------->
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-        <link href="css/login.css" rel="stylesheet" type="text/css"/>
-        <title>Login Form</title>
+        <title>Login</title>
+        <link rel="stylesheet" href="css/stylelogin.css">
     </head>
     <body>
-        <div id="logreg-forms">
-            <form class="form-signin" action="login" method="post">
-                <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign In</h1>
-                <!--<!-- login fail -->
-                <p class="text-danger">${mess} </p>
-                
-                <input name="name"  type="text" id="inputEmail" class="form-control" placeholder="Username" required="" autofocus="" value="${cookie.username1.value}">
-                <input name="pass"  type="password" id="inputPassword" class="form-control" placeholder="Password" required="" value="${cookie.password1.value}">
 
-                <div class="form-group form-check">
-                    <input name="remember" ${(cookie.remember1.value eq '1')?"checked":""} value="1" type="checkbox"   class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Remember me</label>
+        <div class="panda">
+            <div class="ear"></div>
+            <div class="face">
+                <div class="eye-shade"></div>
+                <div class="eye-white">
+                    <div class="eye-ball"></div>
                 </div>
-
-                <button class="btn btn-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Login </button>
-                <hr>
-                <button class="btn btn-primary btn-block" type="button" id="btn-signup"><i class="fas fa-user-plus"></i> Sign Up</button>
-            </form>
-
-            <form action="signup" method="post" class="form-signup">
-                <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign Up</h1>
-                <input name="user" type="text" id="user-name" class="form-control" placeholder="User name" required="" autofocus="">
-                <input name="pass" type="password" id="user-pass" class="form-control" placeholder="Password" required autofocus="">
-                <input name="repass" type="password" id="user-repeatpass" class="form-control" placeholder="Repeat Password" required autofocus="">
-
-                <button class="btn btn-primary btn-block" type="submit"><i class="fas fa-user-plus"></i> Sign Up</button>
-                <a href="#" id="cancel_signup"><i class="fas fa-angle-left"></i> Back</a>
-            </form>
-            <br>
-
+                <div class="eye-shade rgt"></div>
+                <div class="eye-white rgt">
+                    <div class="eye-ball"></div>
+                </div>
+                <div class="nose"></div>
+                <div class="mouth"></div>
+            </div>
+            <div class="body"> </div>
+            <div class="foot">
+                <div class="finger"></div>
+            </div>
+            <div class="foot rgt">
+                <div class="finger"></div>
+            </div>
         </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <script>
-            function toggleResetPswd(e) {
-                e.preventDefault();
-                $('#logreg-forms .form-signin').toggle() // display:block or none
-                $('#logreg-forms .form-reset').toggle() // display:block or none
-            }
+        <form action="login" 
+        <c:if test="${mess!=null}">
+              class="wrong-entry"
+        </c:if>
+              
+            >
+            <div class="hand"></div>
+            <div class="hand rgt"></div>
+            <h1>Login</h1>
+            <div class="form-group">
+                <input name="name" required="required" class="form-control" value="${cookie.username1.value}" />
+                <label class="form-label">Email</label>
+            </div>            
+            <div class="form-group">
+                <input name="pass" id="password" type="password" required="required" class="form-control" value="${cookie.password1.value}"/>
+                <label class="form-label">Password</label>
+                <p class="alert">Wrong user or pass...!!<p>
+                <input name="remember" ${(cookie.remember1.value eq '1')?"checked":""} value="1" type="checkbox">
+                <label > Remember me</label>
+                <div class ="text">Don't have an account?<a href="signup.jsp">Signup Now</a> </div>
+                <button class="btn">Login </button>
+            </div>
+        </form>
 
-            function toggleSignUp(e) {
-                e.preventDefault();
-                $('#logreg-forms .form-signin').toggle(); // display:block or none
-                $('#logreg-forms .form-signup').toggle(); // display:block or none
-            }
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+        <script id="rendered-js">
+        $('#password').focusin(function () {
+            $('form').addClass('up');
+        });
+        $('#password').focusout(function () {
+            $('form').removeClass('up');
+        });
 
-            $(() => {
-                // Login Register Form
-                $('#logreg-forms #forgot_pswd').click(toggleResetPswd);
-                $('#logreg-forms #cancel_reset').click(toggleResetPswd);
-                $('#logreg-forms #btn-signup').click(toggleSignUp);
-                $('#logreg-forms #cancel_signup').click(toggleSignUp);
-            })
+        // Panda Eye move
+        $(document).on("mousemove", function (event) {
+            var dw = $(document).width() / 15;
+            var dh = $(document).height() / 15;
+            var x = event.pageX / dw;
+            var y = event.pageY / dh;
+            $('.eye-ball').css({
+                width: x,
+                height: y
+            });
+
+        });
+
+        // validation
+
+
+
         </script>
+
     </body>
 </html>
