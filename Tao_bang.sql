@@ -29,8 +29,9 @@ create table Users(
 	address nvarchar(100) ,
 	gender BIT	  ,
 	phone nchar(11),
-	role_id int ,
-	foreign key (role_id) references Roles(role_id)
+	isAdmin BIT,
+	isSell BIT
+	
 );
 
 create table Category

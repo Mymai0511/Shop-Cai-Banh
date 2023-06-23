@@ -36,11 +36,10 @@
         <c:if test="${mess!=null}">
               class="wrong-entry"
         </c:if>
-              
-            >
+        >
             <div class="hand"></div>
             <div class="hand rgt"></div>
-            <h1>Login</h1>
+            <h1></h1>
             <div class="form-group">
                 <input name="name" required="required" class="form-control" value="${cookie.username1.value}" />
                 <label class="form-label">Email</label>
@@ -48,10 +47,10 @@
             <div class="form-group">
                 <input name="pass" id="password" type="password" required="required" class="form-control" value="${cookie.password1.value}"/>
                 <label class="form-label">Password</label>
-                <p class="alert">Wrong user or pass...!!<p>
+                <p class="alert" value = "${mess}">Wrong user or pass...!!<p>
                 <input name="remember" ${(cookie.remember1.value eq '1')?"checked":""} value="1" type="checkbox">
                 <label > Remember me</label>
-                <div class ="text">Don't have an account?<a href="signup.jsp">Signup Now</a> </div>
+                <div class ="text">Don't have an account?<a href="signup.jsp">Signup</a> </div>
                 <button class="btn">Login </button>
             </div>
         </form>

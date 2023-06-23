@@ -4,6 +4,8 @@
  */
 package Controller;
 
+import DAL.UserDao;
+import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -30,16 +32,33 @@ public class SignUpControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String name1 = request.getParameter("name");// lấy tên người dùng nhập vào
-        String address1 = request.getParameter("address");// lấy mật khẩu người dùng nhập vào
-        String phone1 = request.getParameter("phone");
         String pass1 = request.getParameter("pass");
         String re_pass = request.getParameter("repass");
-        if (pass1.equals(re_pass)) {
-            
+        if (!pass1.equals(re_pass)) {
+            request.setAttribute("name", name1);
+            request.setAttribute("pass", pass1);
+            request.setAttribute("mess", "Password and Re_Password don't match..!!");
+            request.getRequestDispatcher("signup.jsp").forward(request, response);
         } else {
+            UserDao dao = new UserDao();
+            User a = dao.checkUserExist(name1);
+            if (a == null) {// account chưa tồn tại-> signUp
+                dao.sigup(name1, pass1);
+//                request.setAttribute("name", name1);
+//                request.setAttribute("pass", pass1);
+//                request.getRequestDispatcher("home").forward(request, response);
+                response.sendRedirect("home");
+            } else {// acount đã tồn tại-> đẩy về SignUp
+                request.setAttribute("name", name1);
+                request.setAttribute("pass", pass1);
+                request.setAttribute("re_pass", re_pass);
+                request.setAttribute("mess", "Account already exists..!!");
+                request.getRequestDispatcher("signup.jsp").forward(request, response);
+            }
+
         }
-        
-        
+        //sign up
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

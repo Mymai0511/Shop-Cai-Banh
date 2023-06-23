@@ -165,7 +165,7 @@ body {
 }
 
 .foot {
-    top: 420px;
+    top: 380px;
     left: -80px;
     position: absolute;
     background: #000;
@@ -241,7 +241,7 @@ form {
     max-width: 400px;
     padding: 20px 40px;
     background: #fff;
-    height: 355px;
+    height: 310px;
     margin: auto;
     display: block;
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
@@ -337,7 +337,7 @@ h1 {
     color: #f00;
     font-size: 16px;
     right: -185px;
-    top: -315px;
+    top: -455px;
     z-index: 200;
     padding: 30px 25px;
     background: #fff;
@@ -395,25 +395,31 @@ h1 {
 }
 
 @-webkit-keyframes wrong-log {
-    0%,100% {
+    0%,
+    100% {
         left: 0px;
     }
-    20%,90% {
+    20%,
+    60% {
         left: 20px;
     }
-    40%,80% {
+    40%,
+    80% {
         left: -20px;
     }
 }
 
 @keyframes wrong-log {
-    0%,100% {
+    0%,
+    100% {
         left: 0px;
     }
-    20%,60% {
+    20%,
+    60% {
         left: 20px;
     }
-    40%,80% {
+    40%,
+    80% {
         left: -20px;
     }
 }

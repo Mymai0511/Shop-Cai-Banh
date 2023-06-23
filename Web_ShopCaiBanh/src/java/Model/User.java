@@ -18,12 +18,56 @@ public class User {
     private String address;
     private Boolean gender;
     private String phone;
-    private Role role;
+    private Boolean isAdmin;
+    private Boolean isSell;
 
     public User() {
     }
 
-    public User(int id, String name, String email, String password, String address, Boolean gender, String phone, Role role) {
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
+
+    public User(String name, String password, Boolean isAdmin, Boolean isSell) {
+        this.name = name;
+        this.password = password;
+        this.isAdmin = isAdmin;
+        this.isSell = isSell;
+    }
+    
+
+    public User(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
+
+    public User(int id, String name, String email, String password) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
+
+    public User(int id, String name, String email, String password, String address) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+    }
+
+    public User(int id, String name, String email, String password, String address, Boolean gender) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+        this.gender = gender;
+    }
+
+    public User(int id, String name, String email, String password, String address, Boolean gender, String phone) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -31,36 +75,29 @@ public class User {
         this.address = address;
         this.gender = gender;
         this.phone = phone;
-        this.role = role;
     }
 
-    public User(String name, String email, String password, String address, String phone) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.address = address;
-        this.phone = phone;
-    }
-
-    public User(String name, String email, String password, String address, String phone, Role role) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.address = address;
-        this.phone = phone;
-        this.role = role;
-    }
-
-    public User(int id) {
+    public User(int id, String name, String email, String password, String address, Boolean gender, String phone, Boolean isAdmin) {
         this.id = id;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
         this.address = address;
+        this.gender = gender;
+        this.phone = phone;
+        this.isAdmin = isAdmin;
+    }
+
+    public User(int id, String name, String email, String password, String address, Boolean gender, String phone, Boolean isAdmin, Boolean isSell) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+        this.gender = gender;
+        this.phone = phone;
+        this.isAdmin = isAdmin;
+        this.isSell = isSell;
     }
 
     public int getId() {
@@ -95,6 +132,14 @@ public class User {
         this.password = password;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public Boolean getGender() {
         return gender;
     }
@@ -111,17 +156,26 @@ public class User {
         this.phone = phone;
     }
 
-    public Role getRole() {
-        return role;
+    public Boolean getIsAdmin() {
+        return isAdmin;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setIsAdmin(Boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+
+    public Boolean getIsSell() {
+        return isSell;
+    }
+
+    public void setIsSell(Boolean isSell) {
+        this.isSell = isSell;
     }
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", address=" + address + ", gender=" + gender + ", phone=" + phone + ", role=" + role + '}';
+        return "User{" + "id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", address=" + address + ", gender=" + gender + ", phone=" + phone + ", isAdmin=" + isAdmin + ", isSell=" + isSell + '}';
     }
 
+    
 }

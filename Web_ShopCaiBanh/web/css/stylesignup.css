@@ -165,7 +165,7 @@ body {
 }
 
 .foot {
-    top: 500px;
+    top: 450px;
     left: -80px;
     position: absolute;
     background: #000;
@@ -241,7 +241,7 @@ form {
     max-width: 400px;
     padding: 20px 40px;
     background: #fff;
-    height: 450px;
+    height: 380px;
     margin: auto;
     display: block;
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
@@ -336,7 +336,7 @@ h1 {
     position: absolute;
     color: #f00;
     font-size: 16px;
-    right: -185px;
+    right: -265px;
     top: -455px;
     z-index: 200;
     padding: 30px 25px;
