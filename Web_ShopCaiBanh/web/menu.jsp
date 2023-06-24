@@ -4,6 +4,7 @@
     Author     : DELL
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!--begin of menu-->
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
@@ -15,18 +16,30 @@
 
         <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
             <ul class="navbar-nav m-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Manager Account</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Hello Alias</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Đăng xuất</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="login.jsp">Đăng nhập</a>
-                </li>
+                <c:if test="${sessionScope.acc.isAdmin == true}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Manager Account</a>
+                    </li>
+                </c:if>
+                <c:if test="${sessionScope.acc.isSell == true}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Manager Product</a>
+                    </li>
+                </c:if>
+
+                <c:if test="${sessionScope.acc != null}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Hello ${sessionScope.acc.name}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout">Logout</a>
+                    </li>
+                </c:if>
+                <c:if test="${sessionScope.acc == null}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.jsp">Login</a>
+                    </li>
+                </c:if>
             </ul>
 
             <form action="search" method="post" class="form-inline my-2 my-lg-0">

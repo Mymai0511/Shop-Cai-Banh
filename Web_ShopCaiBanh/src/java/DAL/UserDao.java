@@ -118,9 +118,10 @@ public class UserDao extends DBContext {
     public static void main(String[] args) {
         UserDao p = new UserDao();
         User u = p.checkUserExist("maimy");
+        User a = p.loginByName("tienduc", "1234567");
         List<User> list = p.getAll();
 
         System.out.println(list);
-        System.out.println(u);
+        System.out.println(a);
     }
 }

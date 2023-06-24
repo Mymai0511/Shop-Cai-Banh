@@ -33,51 +33,51 @@
             </div>
         </div>
         <form action="login" 
-        <c:if test="${mess!=null}">
-              class="wrong-entry"
-        </c:if>
-        >
+              <c:if test="${mess!=null}">
+                  class="wrong-entry"
+              </c:if>
+              >
             <div class="hand"></div>
             <div class="hand rgt"></div>
             <h1></h1>
             <div class="form-group">
                 <input name="name" required="required" class="form-control" value="${cookie.username1.value}" />
-                <label class="form-label">Email</label>
+                <label class="form-label">Name</label>
             </div>            
             <div class="form-group">
                 <input name="pass" id="password" type="password" required="required" class="form-control" value="${cookie.password1.value}"/>
                 <label class="form-label">Password</label>
-                <p class="alert" value = "${mess}">Wrong user or pass...!!<p>
                 <input name="remember" ${(cookie.remember1.value eq '1')?"checked":""} value="1" type="checkbox">
                 <label > Remember me</label>
                 <div class ="text">Don't have an account?<a href="signup.jsp">Signup</a> </div>
-                <button class="btn">Login </button>
+                <p class="alert" >Wrong user or pass...!!<p>
+                    <button class="btn">Login </button>
             </div>
         </form>
 
         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
         <script id="rendered-js">
-        $('#password').focusin(function () {
-            $('form').addClass('up');
-        });
-        $('#password').focusout(function () {
-            $('form').removeClass('up');
-        });
-
-        // Panda Eye move
-        $(document).on("mousemove", function (event) {
-            var dw = $(document).width() / 15;
-            var dh = $(document).height() / 15;
-            var x = event.pageX / dw;
-            var y = event.pageY / dh;
-            $('.eye-ball').css({
-                width: x,
-                height: y
+            $('#password').focusin(function () {
+                $('form').addClass('up');
+            });
+            $('#password').focusout(function () {
+                $('form').removeClass('up');
             });
 
-        });
+            // Panda Eye move
+            $(document).on("mousemove", function (event) {
+                var dw = $(document).width() / 15;
+                var dh = $(document).height() / 15;
+                var x = event.pageX / dw;
+                var y = event.pageY / dh;
+                $('.eye-ball').css({
+                    width: x,
+                    height: y
+                });
 
-        // validation
+            });
+
+            // validation
 
 
 
