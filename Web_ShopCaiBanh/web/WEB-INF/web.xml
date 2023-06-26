@@ -28,6 +28,14 @@
         <servlet-name>LogoutControl</servlet-name>
         <servlet-class>Controller.LogoutControl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ManagerProduct</servlet-name>
+        <servlet-class>Controller.ManagerProduct</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteControl</servlet-name>
+        <servlet-class>Controller.DeleteControl</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeControl</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -55,6 +63,14 @@
     <servlet-mapping>
         <servlet-name>LogoutControl</servlet-name>
         <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManagerProduct</servlet-name>
+        <url-pattern>/managerproduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteControl</servlet-name>
+        <url-pattern>/delete</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

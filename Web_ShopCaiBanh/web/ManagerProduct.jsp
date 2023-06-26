@@ -68,12 +68,12 @@
                                 <td>${o.id}</td>
                                 <td>${o.name}</td>
                                 <td>
-                                    <img src="${o.image}">
+                                    <img src="${o.img}">
                                 </td>
                                 <td>${o.price} $</td>
                                 <td>
                                     <a href="#editEmployeeModal"  class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                    <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                    <a href="delete?pid=${o.id}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                                 </td>
                             </tr>
                         </c:forEach>

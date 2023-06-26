@@ -9,7 +9,7 @@
 <!--begin of menu-->
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="home">Bánh</a>
+        <a class="navbar-brand" href="home">Cake</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -23,7 +23,7 @@
                 </c:if>
                 <c:if test="${sessionScope.acc.isSell == true}">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Manager Product</a>
+                        <a class="nav-link" href="managerproduct">Manager Product</a>
                     </li>
                 </c:if>
 

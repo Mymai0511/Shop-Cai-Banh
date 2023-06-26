@@ -145,6 +145,18 @@ public class ProductDAO extends DBContext {
         return list;
     }
 
+    public void deleteProduct(String pid) {
+        List<Product> list = new ArrayList<>();
+        String sql = "delete from Product where product_id = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);// kết nối với sql
+            st.setString(1, pid);// truyền pid vào dấu ? thứ nhất
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
 //    //test có kết nối được với database không
 //    public static void main(String[] args) {
 //        ProductDAO p = new ProductDAO();
