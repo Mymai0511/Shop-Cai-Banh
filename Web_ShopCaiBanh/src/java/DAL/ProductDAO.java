@@ -31,7 +31,6 @@ public class ProductDAO extends DBContext {
                 p.setName(rs.getString("product_name"));
                 p.setPrice(rs.getDouble("price"));
                 p.setStock(rs.getString("stock"));
-                //p.setCategory(new Category(rs.getInt("category_id"), rs.getString("category_name")));
                 p.setImg(rs.getString("img"));
                 p.setTitle(rs.getString("title"));
                 p.setDescription(rs.getString("description"));
@@ -54,7 +53,6 @@ public class ProductDAO extends DBContext {
                 p.setName(rs.getString("product_name"));
                 p.setPrice(rs.getDouble("price"));
                 p.setStock(rs.getString("stock"));
-                //    p.setCategory(new Category(rs.getInt("category_id"), rs.getString("category_name")));
                 p.setImg(rs.getString("img"));
                 p.setTitle(rs.getString("title"));
                 p.setDescription(rs.getString("description"));
@@ -81,7 +79,6 @@ public class ProductDAO extends DBContext {
                 p.setName(rs.getString("product_name"));
                 p.setPrice(rs.getDouble("price"));
                 p.setStock(rs.getString("stock"));
-                //p.setCategory(new Category(rs.getInt("category_id"), rs.getString("category_name")));
                 p.setCid(cid);
                 p.setImg(rs.getString("img"));
                 p.setTitle(rs.getString("title"));
@@ -107,7 +104,6 @@ public class ProductDAO extends DBContext {
                 p.setName(rs.getString("product_name"));
                 p.setPrice(rs.getDouble("price"));
                 p.setStock(rs.getString("stock"));
-                //    p.setCategory(new Category(rs.getInt("category_id"), rs.getString("category_name")));
                 p.setImg(rs.getString("img"));
                 p.setTitle(rs.getString("title"));
                 p.setDescription(rs.getString("description"));
@@ -157,16 +153,67 @@ public class ProductDAO extends DBContext {
         }
     }
 
-//    //test có kết nối được với database không
-//    public static void main(String[] args) {
-//        ProductDAO p = new ProductDAO();
-//        List<Product> list = p.getAll();
-//        Product plast = p.getLast();
-//        List<Product> listcID = p.getProductByCID("1");
-//        List<Product> listSearch = p.searchByName("chocolate");
-//        System.out.println(plast);
-//        System.out.println(list);
-//        System.out.println(listcID);
-//        System.out.println(listSearch);
-//    }
+    public void AddProduct(String name, String price, String stock, String image,
+            String title, String description, String categoryID) {
+        //double price1 = Double.parseDouble(price);
+        String sql = "INSERT INTO Product ( product_name, price, stock, img, \n"
+                + "title,description, category_id) \n"
+                + "values (?,?,?,?,?,?,?);";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);// kết nối với sql
+            st.setString(1, name);// truyền pid vào dấu ? thứ nhất
+            st.setString(2, price);
+            st.setString(3, stock);
+            st.setString(4, image);
+            st.setString(5, title);
+            st.setString(6, description);
+            st.setString(7, categoryID);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void EditProduct(String productID, String name, String price, String stock, String image,
+            String title, String description, String categoryID) {
+//        double price1 = Double.parseDouble(price);
+//        int pID1 = Integer.parseInt(productID);
+        String sql = "update product\n"
+                + "set [product_name] = ?,\n"
+                + "price = ?,\n"
+                + "stock = ?,\n"
+                + "img = ?,\n"
+                + "title = ?,\n"
+                + "[description] = ?,\n"
+                + "category_id = ?\n"
+                + "where product_id = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);// kết nối với sql
+            st.setString(1, name);// truyền pid vào dấu ? thứ nhất
+            st.setString(2, price);
+            st.setString(3, stock);
+            st.setString(4, image);
+            st.setString(5, title);
+            st.setString(6, description);
+            st.setString(7, categoryID);
+            st.setString(8, productID);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    //test có kết nối được với database không
+    public static void main(String[] args) {
+        ProductDAO p = new ProductDAO();
+        List<Product> list = p.getAll();
+        Product plast = p.getLast();
+        List<Product> listcID = p.getProductByCID("1");
+        List<Product> listSearch = p.searchByName("chocolate");
+        p.AddProduct("23123", "1.2", "dfdf", "fadfd", "fwdf", "vdv", "2");
+        System.out.println(plast);
+        System.out.println(list);
+        System.out.println(listcID);
+        System.out.println(listSearch);
+    }
 }

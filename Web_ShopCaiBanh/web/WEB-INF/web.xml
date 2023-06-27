@@ -36,6 +36,18 @@
         <servlet-name>DeleteControl</servlet-name>
         <servlet-class>Controller.DeleteControl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddControl</servlet-name>
+        <servlet-class>Controller.AddControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadControl</servlet-name>
+        <servlet-class>Controller.LoadControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditControl</servlet-name>
+        <servlet-class>Controller.EditControl</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeControl</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -71,6 +83,18 @@
     <servlet-mapping>
         <servlet-name>DeleteControl</servlet-name>
         <url-pattern>/delete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddControl</servlet-name>
+        <url-pattern>/add</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadControl</servlet-name>
+        <url-pattern>/loadproduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditControl</servlet-name>
+        <url-pattern>/edit</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

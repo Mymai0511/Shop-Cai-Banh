@@ -55,6 +55,16 @@ public class Product {
         this.description = description;
     }
 
+    public Product(String name, double price, String stock, String cid, String img, String title, String description) {
+        this.name = name;
+        this.price = price;
+        this.stock = stock;
+        this.cid = cid;
+        this.img = img;
+        this.title = title;
+        this.description = description;
+    }
+
     public String getCid() {
         return cid;
     }

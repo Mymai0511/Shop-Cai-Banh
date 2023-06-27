@@ -72,7 +72,7 @@
                                 </td>
                                 <td>${o.price} $</td>
                                 <td>
-                                    <a href="#editEmployeeModal"  class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                    <a href="loadproduct?pid=${o.id}""  class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                                     <a href="delete?pid=${o.id}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                                 </td>
                             </tr>
@@ -105,7 +105,7 @@
                         <div class="modal-body">					
                             <div class="form-group">
                                 <label>Name</label>
-                                <input name="name" type="text" class="form-control" required>
+                                <input value ="${detail.name}" name="name" type="text" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Image</label>
@@ -115,6 +115,10 @@
                                 <label>Price</label>
                                 <input name="price" type="text" class="form-control" required>
                             </div>
+                            <div class="form-group">
+                                <label>Stock</label>
+                                <input name="stock" type="text" class="form-control" required>
+                            </div>                           
                             <div class="form-group">
                                 <label>Title</label>
                                 <textarea name="title" class="form-control" required></textarea>
@@ -128,6 +132,7 @@
                                 <select name="category" class="form-select" aria-label="Default select example">
                                     <c:forEach items="${listC}" var="o">
                                         <option value="${o.id}">${o.name}</option>
+                                        <!-- Lấy về được id để add sản phẩm và hiện thị là name -->
                                     </c:forEach>
                                 </select>
                             </div>
