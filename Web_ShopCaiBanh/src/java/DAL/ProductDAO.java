@@ -203,6 +203,22 @@ public class ProductDAO extends DBContext {
         }
     }
 
+    // đếm số lương acount trong database
+    public int getTotalAccount() {
+        
+        String sql = "select count (*) from product";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);// kết nối với sql
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {                
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
+
     //test có kết nối được với database không
     public static void main(String[] args) {
         ProductDAO p = new ProductDAO();
@@ -210,10 +226,12 @@ public class ProductDAO extends DBContext {
         Product plast = p.getLast();
         List<Product> listcID = p.getProductByCID("1");
         List<Product> listSearch = p.searchByName("chocolate");
+        int a = p.getTotalAccount();
         p.AddProduct("23123", "1.2", "dfdf", "fadfd", "fwdf", "vdv", "2");
         System.out.println(plast);
         System.out.println(list);
         System.out.println(listcID);
         System.out.println(listSearch);
+        System.out.println(a);
     }
 }

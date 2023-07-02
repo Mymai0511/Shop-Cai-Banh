@@ -53,6 +53,21 @@
                             </div>
                         </c:forEach>
                     </div>
+                    <div class="clearfix">
+                        
+                        <div class="hint-text">S<howing <b>5</b> out of <b>25</b> entries</div>
+                        <ul class="pagination">
+                        
+
+                            <li class="page-item disabled"><a href="#">Previous</a></li>
+                            <c:forEach begin="1"  end="${endP}" var="i">
+                            <li class="page-item active"><a href="#" class="page-link">${i}</a></li>
+                            </c:forEach >
+                            <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                        
+
+                        </ul>
+                    </div>
                 </div>
 
             </div>
