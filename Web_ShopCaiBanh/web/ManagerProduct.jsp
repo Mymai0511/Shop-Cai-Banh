@@ -53,6 +53,7 @@
                             <th>Name</th>
                             <th>Image</th>
                             <th>Price</th>
+                            <th>stock</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
