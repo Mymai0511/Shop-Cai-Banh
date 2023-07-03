@@ -67,7 +67,7 @@
                                 </c:if>
                                 
                                 <c:if test="${tagC!=null}">
-                                <a href="category?index=${i}" class="page-link">${i}</a>
+                                <a href="category?index=${i}&cid=${tagC}" class="page-link">${i}</a>
                                 </c:if>                               
                             </li>
                             </c:forEach >

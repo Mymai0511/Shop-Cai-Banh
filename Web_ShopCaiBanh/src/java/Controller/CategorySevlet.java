@@ -11,6 +11,7 @@ import Model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import javax.security.auth.message.callback.PrivateKeyCallback;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -36,9 +37,11 @@ public class CategorySevlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String cateID = request.getParameter("cid");
         // đã lấy đc category id về
+        PrintWriter print = response.getWriter();
+        print.println(cateID);
+        
         ProductDAO pDAO = new ProductDAO();
 //        List<Product> listCID = pDAO.getProductByCID(cateID);
-
         Product pLast = pDAO.getLast();
 
         CategoryDAO c = new CategoryDAO();// gọi CategoryDAO
@@ -71,6 +74,7 @@ public class CategorySevlet extends HttpServlet {
         request.getRequestDispatcher("home.jsp").forward(request, response);
 
     }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
