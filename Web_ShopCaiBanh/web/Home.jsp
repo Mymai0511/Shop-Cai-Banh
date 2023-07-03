@@ -19,7 +19,7 @@
                     <div class="col">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="Home.jsp">Trang chủ</a></li>
+                                <li class="breadcrumb-item"><a href="home">Trang chủ</a></li>
                                 <li class="breadcrumb-item"><a href="#">Danh mục</a></li>
                                 <li class="breadcrumb-item active" aria-current="#">Sub-category</li>
                             </ol>
@@ -61,7 +61,15 @@
 
                             <li class="page-item disabled"><a href="#">Previous</a></li>
                             <c:forEach begin="1"  end="${endP}" var="i">
-                            <li class="page-item active"><a href="#" class="page-link">${i}</a></li>
+                            <li class="page-item  ${tagP == i ?  "active":"" }">
+                                <c:if test="${tagC==null}">
+                                <a href="home?index=${i}" class="page-link">${i}</a>
+                                </c:if>
+                                
+                                <c:if test="${tagC!=null}">
+                                <a href="category?index=${i}" class="page-link">${i}</a>
+                                </c:if>                               
+                            </li>
                             </c:forEach >
                             <li class="page-item"><a href="#" class="page-link">Next</a></li>
                         

@@ -66,7 +66,7 @@ public class ProductDAO extends DBContext {
 
     public List<Product> getProductByCID(String cid) {
         List<Product> list = new ArrayList<>();
-        // lấy dữ liệu bảng product+ category
+        // lấy dữ liệu bảng product
         String sql = "select * from Product\n"
                 + "where category_id = ?";
         try {
@@ -204,7 +204,7 @@ public class ProductDAO extends DBContext {
     }
 
     // đếm số lương acount trong database
-    public int getTotalAccount() {
+    public int getTotalProduct() {
         
         String sql = "select count (*) from product";
         try {
@@ -218,20 +218,50 @@ public class ProductDAO extends DBContext {
         }
         return 0;
     }
+    
+    public List<Product> pagingProduct( int index) {
+        List<Product> list = new ArrayList<>();
+        // lấy dữ liệu bảng product+ category
+        String sql = "select * from Product\n" +
+                    "order by product_id\n" +
+                    "offset ? rows fetch next 6 rows only;";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);// kết nối với sql
+            st.setInt(1, (index- 1)*6);
+            ResultSet rs = st.executeQuery();// trả về kết quả từ sql- nhiều bản ghi
+            while (rs.next()) {
+                Product p = new Product();
+                p.setId(rs.getInt("product_id"));
+                p.setName(rs.getString("product_name"));
+                p.setPrice(rs.getDouble("price"));
+                p.setStock(rs.getString("stock"));
+                p.setImg(rs.getString("img"));
+                p.setTitle(rs.getString("title"));
+                p.setDescription(rs.getString("description"));
+                list.add(p);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
 
     //test có kết nối được với database không
     public static void main(String[] args) {
         ProductDAO p = new ProductDAO();
-        List<Product> list = p.getAll();
+        List<Product> list = p.pagingProduct(8);
         Product plast = p.getLast();
-        List<Product> listcID = p.getProductByCID("1");
+        List<Product> listcID = p.getProductByCID("2");
         List<Product> listSearch = p.searchByName("chocolate");
-        int a = p.getTotalAccount();
-        p.AddProduct("23123", "1.2", "dfdf", "fadfd", "fwdf", "vdv", "2");
-        System.out.println(plast);
-        System.out.println(list);
+        int a = p.getTotalProduct();
+        //p.AddProduct("23123", "1.2", "dfdf", "fadfd", "fwdf", "vdv", "2");
+        for(Product o : list){
+            System.out.println(o);
+        }
+//        System.out.println(plast);
+//        System.out.println(list);
         System.out.println(listcID);
-        System.out.println(listSearch);
-        System.out.println(a);
+//        System.out.println(listSearch);
+       System.out.println(a);
     }
 }

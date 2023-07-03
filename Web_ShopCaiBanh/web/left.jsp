@@ -12,7 +12,7 @@
         <ul class="list-group category_block">
             <!-- Hiện thị danh mục các loại bánh- lấy dữ liệu từ sql -->
             <c:forEach items="${listC}" var="c">
-                <li class="list-group-item text-white ${tag == c.id ?  "button5":"" }"><a href="category?cid=${c.id}">${c.name}</a></li>
+                <li class="list-group-item text-white ${tagC == c.id ?  "button5":"" }"><a href="category?cid=${c.id}">${c.name}</a></li>
                 <!-- click vào gọi tới Sevlet có đường dẫn category, truyền vào 1 biến cid= id của category đấy -->
             </c:forEach>
 

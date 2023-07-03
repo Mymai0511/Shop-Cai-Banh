@@ -1,4 +1,4 @@
- /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
@@ -37,17 +37,38 @@ public class CategorySevlet extends HttpServlet {
         String cateID = request.getParameter("cid");
         // đã lấy đc category id về
         ProductDAO pDAO = new ProductDAO();
-        List<Product> listCID = pDAO.getProductByCID(cateID);
+//        List<Product> listCID = pDAO.getProductByCID(cateID);
+
         Product pLast = pDAO.getLast();
-        
+
         CategoryDAO c = new CategoryDAO();// gọi CategoryDAO
         List<Category> listCategorys = c.getAll();
+        
+        //phân trang
+        int count = c.getTotalProductByCID(cateID) ;
+        int endPage = count / 6;
+        if (count % 6 != 0) {// có dư thì cộng thêm 1 trang
+            endPage++;
+        }
+        request.setAttribute("endP", endPage);
+        
+        //lấy sản phẩm đã phân trang
+        String indexPaging = request.getParameter("index");
+        if (indexPaging == null) {
+            indexPaging = "1";
+        }
+        int index = Integer.parseInt(indexPaging);
+        List<Product> listPaging = c.pagingProductByCID(cateID, index);
+        request.setAttribute("listP", listPaging);
+
+        //đánh dấu trang đang hiển thị
+        request.setAttribute("tagP", index);        
+        
 
         request.setAttribute("listC", listCategorys);// đẩy list thành listC lên trang jsp
-        request.setAttribute("tag", cateID);
+        request.setAttribute("tagC", cateID);
         request.setAttribute("p", pLast);
-        request.setAttribute("listP", listCID);
-        request.getRequestDispatcher("Home.jsp").forward(request, response);
+        request.getRequestDispatcher("home.jsp").forward(request, response);
 
     }
 
@@ -90,4 +111,11 @@ public class CategorySevlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+//    public static void main(String[] args) {
+//        CategorySevlet ca = new CategorySevlet();
+//        
+//        for (Product o : listCID) {
+//            System.out.println(o);
+//        }
+//    }
 }

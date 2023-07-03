@@ -46,19 +46,31 @@ public class HomeControl extends HttpServlet {
 
         Product pLast = p.getLast();
         request.setAttribute("p", pLast);
-
-        List<Product> listProduct = p.getAll();
-        request.setAttribute("listP", listProduct);
+        
+//        //lấy tất cả sản phẩm
+//        List<Product> listProduct = p.getAll();
+//        request.setAttribute("listP", listProduct);
 
         //phân trang
-        int count = p.getTotalAccount();///39
+        int count = p.getTotalProduct();///39
         int endPage = count / 6;
         if (count % 6 != 0) {// có dư thì cộng thêm 1 trang
             endPage++;
         }
         request.setAttribute("endP", endPage);
+        
+        //lấy sản phẩm đã phân trang
+        String indexPaging = request.getParameter("index");
+        if (indexPaging == null) {
+            indexPaging = "1";
+        }
+        int index = Integer.parseInt(indexPaging);
+        List<Product> listPaging = p.pagingProduct(index);
+        request.setAttribute("listP", listPaging);
 
-        request.getRequestDispatcher("Home.jsp").forward(request, response);
+        //đánh dấu trang đang hiển thị
+        request.setAttribute("tagP", index);
+        request.getRequestDispatcher("home.jsp").forward(request, response);
 
     }
 
