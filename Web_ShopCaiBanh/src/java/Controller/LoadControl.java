@@ -47,7 +47,7 @@ public class LoadControl extends HttpServlet {
         request.setAttribute("listC", listCategorys);// đẩy list thành listC lên trang jsp
 
         request.setAttribute("detail", pID);
-        request.getRequestDispatcher("edit.jsp").forward(request, response);
+        request.getRequestDispatcher("editproduct.jsp").forward(request, response);
 
     } 
 

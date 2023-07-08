@@ -30,7 +30,7 @@
                             <h2>Manager <b>Account</b></h2>
                         </div>
                         <div class="col-sm-6">
-                            <a href="#addEmployeeModal"  class="btn  button1" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Account</span></a>
+                            <a href="#addAccount"  class="btn  button1" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Account</span></a>
                             <a href="#deleteEmployeeModal" class="btn button1" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
                         </div>
                     </div>
@@ -89,11 +89,11 @@
                 </div>
             </div>
         </div>
-        <!-- Edit Modal HTML -->
-        <div id="addEmployeeModal" class="modal fade">
+        <!-- Add Account HTML -->
+        <div id="addAccount" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="add" method="post">
+                    <form action="addaccount" method="post">
                         <div class="modal-header">						
                             <h4 class="modal-title">Add Account</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -101,35 +101,32 @@
                         <div class="modal-body">					
                             <div class="form-group">
                                 <label>Name</label>
-                                <input value ="${detail.name}" name="name" type="text" class="form-control" required>
+                                <input name="name" type="text" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Image</label>
-                                <input name="image" type="text" class="form-control" required>
+                                <label>Pass</label>
+                                <input name="pass" type="text" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Price</label>
-                                <input name="price" type="text" class="form-control" required>
+                                <label>Address</label>
+                                <input name="address" type="text" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Stock</label>
-                                <input name="stock" type="text" class="form-control" required>
+                                <label>Phone</label>
+                                <input name="phone" type="text" class="form-control" required>
                             </div>                           
                             <div class="form-group">
-                                <label>Title</label>
-                                <textarea name="title" class="form-control" required></textarea>
+                                <label>isSell</label>
+                                <select name="sell" class="form-select" aria-label="Default select example">
+                                    <option value="1">True</option>
+                                    <option value="0">False</option>
+                                </select>
                             </div>
                             <div class="form-group">
-                                <label>Description</label>
-                                <textarea name="description" class="form-control" required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Category</label>
-                                <select name="category" class="form-select" aria-label="Default select example">
-                                    <c:forEach items="${listC}" var="o">
-                                        <option value="${o.id}">${o.name}</option>
-                                        <!-- Lấy về được id để add sản phẩm và hiện thị là name -->
-                                    </c:forEach>
+                                <label>isAdmin</label>
+                                <select name="admin" class="form-select" aria-label="Default select example">
+                                    <option value="1">True</option>
+                                    <option value="0">False</option>
                                 </select>
                             </div>
 
@@ -142,41 +139,7 @@
                 </div>
             </div>
         </div>
-        <!-- Edit Modal HTML -->
-        <div id="editEmployeeModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form>
-                        <div class="modal-header">						
-                            <h4 class="modal-title">Edit Employee</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        </div>
-                        <div class="modal-body">					
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input type="text" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input type="email" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Address</label>
-                                <textarea class="form-control" required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Phone</label>
-                                <input type="text" class="form-control" required>
-                            </div>					
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" class="btn button1" value="Save">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+
         <!-- Delete Modal HTML -->
         <div id="deleteEmployeeModal" class="modal fade">
             <div class="modal-dialog">

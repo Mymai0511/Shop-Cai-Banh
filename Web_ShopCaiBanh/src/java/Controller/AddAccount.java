@@ -5,6 +5,7 @@
 
 package Controller;
 
+import DAL.UserDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -28,18 +29,16 @@ public class AddAccount extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AddAccount</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AddAccount at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        String name1 = request.getParameter("name");
+        String pass1 = request.getParameter("pass");
+        String address1 = request.getParameter("address");
+        String phone1 = request.getParameter("phone");
+        String sell1 = request.getParameter("sell");
+        String admin1 = request.getParameter("admin");
+        
+        UserDao dao = new UserDao();
+        dao.addAccount(name1, pass1, address1, phone1, sell1, admin1);
+        response.sendRedirect("manageraccount");
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -159,11 +159,31 @@ public class UserDao extends DBContext {
         return list;
     }
 
+    public void addAccount(String name, String pass, String address, String phone, String isSell, String isAdmin ) {
+        User userN = new User();
+        String sql = "INSERT INTO Users ( user_name, password, address, phone, isSell, isAdmin) values (?, ?, ?, ?, ?, ?);";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);// kết nối với sql
+            st.setString(1, name);
+            st.setString(2, pass);
+            st.setString(3, address);
+            st.setString(4, phone);
+            st.setString(5, isSell);
+            st.setString(6, isAdmin);
+            st.executeUpdate();
+            //ResultSet rs = st.executeQuery();// trả về kết quả từ sql- nhiều bản ghi
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
     //test có kết nối được với database không
     public static void main(String[] args) {
         UserDao u = new UserDao();
         User c = u.checkUserExist("maimy");
         User a = u.loginByName("tienduc", "1234567");
+         u.addAccount("TranLoan", "jknk", "Nam Định", "0913927101", "0", "1");
         List<User> list = u.getAll();
         int t = u.getTotalAccount();
         List<User> lista = u.pagingAccount15(1);

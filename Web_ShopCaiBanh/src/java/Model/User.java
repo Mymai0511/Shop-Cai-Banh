@@ -24,6 +24,15 @@ public class User {
     public User() {
     }
 
+    public User(String name, String password, String address, String phone, Boolean isAdmin, Boolean isSell) {
+        this.name = name;
+        this.password = password;
+        this.address = address;
+        this.phone = phone;
+        this.isAdmin = isAdmin;
+        this.isSell = isSell;
+    }
+
     public User(String name, String password) {
         this.name = name;
         this.password = password;
