@@ -218,13 +218,8 @@ table.table .avatar {
     font-weight: normal;
 }
 
-.btn-success {
-    color: #fff;
+.button1 {
     background-color: #ff4081;
-    border-color: #ff4081;
-}
-.btn-danger {
-    color: #fff;
-    background-color: #ff4081;
-    border-color: #ff4081;
+    color: black;
+    border: 2px solid #ff4081;
 }

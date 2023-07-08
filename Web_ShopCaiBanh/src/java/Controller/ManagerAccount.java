@@ -43,7 +43,7 @@ public class ManagerAccount extends HttpServlet {
         request.setAttribute("listC", listCategorys);// đẩy list thành listC lên trang jsp
 
         request.setAttribute("listP", list);
-        request.getRequestDispatcher("managerproduct.jsp").forward(request, response);
+        request.getRequestDispatcher("manageraccount.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

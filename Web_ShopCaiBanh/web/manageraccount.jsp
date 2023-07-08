@@ -1,11 +1,4 @@
-<%-- 
-    Document   : ManagerProduct
-    Created on : Dec 28, 2020, 5:19:02 PM
-    Author     : trinh
---%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -19,7 +12,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <link href="css/manager.css" rel="stylesheet" type="text/css"/>
+        <link href="css/manageraccount.css" rel="stylesheet" type="text/css"/>
         <style>
             img{
                 width: 200px;
@@ -32,15 +25,15 @@
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2>Manage <b>Product</b></h2>
+                            <h2>Manager <b>Account</b></h2>
                         </div>
                         <div class="col-sm-6">
-                            <a href="#addEmployeeModal"  class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
-                            <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+                            <a href="#addEmployeeModal"  class="btn  button1" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
+                            <a href="#deleteEmployeeModal" class="btn button1" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
                         </div>
                     </div>
                 </div>
-                <table class="table table-striped table-hover">
+                <table class="row table table-striped table-hover ">
                     <thead>
                         <tr>
                             <th>
@@ -51,9 +44,11 @@
                             </th>
                             <th>ID</th>
                             <th>Name</th>
-                            <th>Image</th>
-                            <th>Price</th>
-                            <th>stock</th>
+                            <th>Pass</th>
+                            <th>Address</th>
+                            <th>Phone</th>
+                            <th>isAdmin</th>
+                            <th>isSell</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -68,13 +63,13 @@
                                 </td>
                                 <td>${o.id}</td>
                                 <td>${o.name}</td>
-                                <td>
-                                    <img src="${o.img}">
-                                </td>
+                                <td> </td>
                                 <td>${o.price} $</td>
                                 <td>${o.stock} </td>
+                                <td>${o.stock} </td>
+                                <td>${o.stock} </td>
                                 <td>
-                                    <a href="loadproduct?pid=${o.id}""  class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                    <a href="loadproduct?pid=${o.id}"  class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                                     <a href="delete?pid=${o.id}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                                 </td>
                             </tr>
@@ -134,7 +129,7 @@
                                 <select name="category" class="form-select" aria-label="Default select example">
                                     <c:forEach items="${listC}" var="o">
                                         <option value="${o.id}">${o.name}</option>
-                                        <!-- Lấy về được id để add sản phẩm và hiện thị là name -->
+                                        <!-- L?y v? ???c id ?? add s?n ph?m v� hi?n th? l� name -->
                                     </c:forEach>
                                 </select>
                             </div>
@@ -142,7 +137,7 @@
                         </div>
                         <div class="modal-footer">
                             <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" class="btn btn-success" value="Add">
+                            <input type="submit" class="btn button1" value="Add">
                         </div>
                     </form>
                 </div>
@@ -177,7 +172,7 @@
                         </div>
                         <div class="modal-footer">
                             <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" class="btn btn-info" value="Save">
+                            <input type="submit" class="btn button1" value="Save">
                         </div>
                     </form>
                 </div>
@@ -198,13 +193,13 @@
                         </div>
                         <div class="modal-footer">
                             <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" class="btn btn-danger" value="Delete">
+                            <input type="submit" class="btn button1" value="Delete">
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        <script src="js/manager.js" type="text/javascript"></script>
+        <script src="app.js" type="text/javascript"></script>
         <script>
                
         </script>
