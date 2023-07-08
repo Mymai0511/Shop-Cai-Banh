@@ -65,7 +65,7 @@ public class HomeControl extends HttpServlet {
             indexPaging = "1";
         }
         int index = Integer.parseInt(indexPaging);
-        List<Product> listPaging = p.pagingProduct(index);
+        List<Product> listPaging = p.pagingProduct6(index);
         request.setAttribute("listP", listPaging);
 
         //đánh dấu trang đang hiển thị

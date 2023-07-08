@@ -205,12 +205,12 @@ public class ProductDAO extends DBContext {
 
     // đếm số lương acount trong database
     public int getTotalProduct() {
-        
+
         String sql = "select count (*) from product";
         try {
             PreparedStatement st = connection.prepareStatement(sql);// kết nối với sql
             ResultSet rs = st.executeQuery();
-            while (rs.next()) {                
+            while (rs.next()) {
                 return rs.getInt(1);
             }
         } catch (SQLException e) {
@@ -218,16 +218,43 @@ public class ProductDAO extends DBContext {
         }
         return 0;
     }
-    
-    public List<Product> pagingProduct( int index) {
+
+    public List<Product> pagingProduct6(int index) {
         List<Product> list = new ArrayList<>();
         // lấy dữ liệu bảng product+ category
-        String sql = "select * from Product\n" +
-                    "order by product_id\n" +
-                    "offset ? rows fetch next 6 rows only;";
+        String sql = "select * from Product\n"
+                + "order by product_id\n"
+                + "offset ? rows fetch next 6 rows only;";
         try {
             PreparedStatement st = connection.prepareStatement(sql);// kết nối với sql
-            st.setInt(1, (index- 1)*6);
+            st.setInt(1, (index - 1) * 6);
+            ResultSet rs = st.executeQuery();// trả về kết quả từ sql- nhiều bản ghi
+            while (rs.next()) {
+                Product p = new Product();
+                p.setId(rs.getInt("product_id"));
+                p.setName(rs.getString("product_name"));
+                p.setPrice(rs.getDouble("price"));
+                p.setStock(rs.getString("stock"));
+                p.setImg(rs.getString("img"));
+                p.setTitle(rs.getString("title"));
+                p.setDescription(rs.getString("description"));
+                list.add(p);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
+    public List<Product> pagingProduct10(int index) {
+        List<Product> list = new ArrayList<>();
+        // lấy dữ liệu bảng product+ category
+        String sql = "select * from Product\n"
+                + "order by product_id\n"
+                + "offset ? rows fetch next 10 rows only;";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);// kết nối với sql
+            st.setInt(1, (index - 1) * 10);
             ResultSet rs = st.executeQuery();// trả về kết quả từ sql- nhiều bản ghi
             while (rs.next()) {
                 Product p = new Product();
@@ -249,19 +276,19 @@ public class ProductDAO extends DBContext {
     //test có kết nối được với database không
     public static void main(String[] args) {
         ProductDAO p = new ProductDAO();
-        List<Product> list = p.pagingProduct(8);
+        List<Product> list = p.pagingProduct6(8);
         Product plast = p.getLast();
         List<Product> listcID = p.getProductByCID("2");
         List<Product> listSearch = p.searchByName("chocolate");
         int a = p.getTotalProduct();
         //p.AddProduct("23123", "1.2", "dfdf", "fadfd", "fwdf", "vdv", "2");
-        for(Product o : list){
+        for (Product o : list) {
             System.out.println(o);
         }
 //        System.out.println(plast);
 //        System.out.println(list);
         System.out.println(listcID);
 //        System.out.println(listSearch);
-       System.out.println(a);
+        System.out.println(a);
     }
 }

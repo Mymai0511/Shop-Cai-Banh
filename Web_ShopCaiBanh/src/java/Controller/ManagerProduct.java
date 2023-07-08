@@ -34,15 +34,35 @@ public class ManagerProduct extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ProductDAO dao = new ProductDAO();
-        List<Product> list = dao.getAll();
-
+        ProductDAO p = new ProductDAO();
+//        List<Product> list = p.getAll();
+//        request.setAttribute("listP", list);
+        
         CategoryDAO c = new CategoryDAO();// gọi CategoryDAO
         List<Category> listCategorys = c.getAll();
         //b2: det data to jsp
         request.setAttribute("listC", listCategorys);// đẩy list thành listC lên trang jsp
+        
+        //phân trang
+        int count = p.getTotalProduct();///39
+        int endPage = count / 10;
+        if (count % 10 != 0) {// có dư thì cộng thêm 1 trang
+            endPage++;
+        }
+        request.setAttribute("endP", endPage);
+        
+        //lấy sản phẩm đã phân trang
+        String indexPaging = request.getParameter("index");
+        if (indexPaging == null) {
+            indexPaging = "1";
+        }
+        int index = Integer.parseInt(indexPaging);
+        List<Product> listPaging = p.pagingProduct10(index);
+        request.setAttribute("listP", listPaging);
 
-        request.setAttribute("listP", list);
+        //đánh dấu trang đang hiển thị
+        request.setAttribute("tagP", index);
+
         request.getRequestDispatcher("managerproduct.jsp").forward(request, response);
     }
 

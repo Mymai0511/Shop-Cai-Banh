@@ -52,6 +52,10 @@
         <servlet-name>ManagerAccount</servlet-name>
         <servlet-class>Controller.ManagerAccount</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddAccount</servlet-name>
+        <servlet-class>Controller.AddAccount</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeControl</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -103,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>ManagerAccount</servlet-name>
         <url-pattern>/manageraccount</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddAccount</servlet-name>
+        <url-pattern>/addaccount</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
