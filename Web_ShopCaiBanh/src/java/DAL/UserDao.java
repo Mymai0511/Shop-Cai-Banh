@@ -159,7 +159,7 @@ public class UserDao extends DBContext {
         return list;
     }
 
-    public void addAccount(String name, String pass, String address, String phone, String isSell, String isAdmin ) {
+    public void addAccount(String name, String pass, String address, String phone, String isSell, String isAdmin) {
         User userN = new User();
         String sql = "INSERT INTO Users ( user_name, password, address, phone, isSell, isAdmin) values (?, ?, ?, ?, ?, ?);";
         try {
@@ -178,19 +178,73 @@ public class UserDao extends DBContext {
         }
     }
 
-    //test có kết nối được với database không
+    public User getAccountByID(String pid) {
+        String sql = "select * from Users\n"
+                + "where user_id = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);// kết nối với sql
+            st.setString(1, pid);
+            ResultSet rs = st.executeQuery();// trả về kết quả từ sql- nhiều bản ghi
+            while (rs.next()) {
+                User p = new User();
+                p.setId(rs.getInt("user_id"));
+                p.setName(rs.getString("user_name"));
+                p.setPassword(rs.getString("password"));
+                p.setAddress(rs.getString("address"));
+                p.setPhone(rs.getString("phone"));
+                p.setIsSell(rs.getBoolean("isSell"));
+                p.setIsAdmin(rs.getBoolean("isAdmin"));
+                return p;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    public void EditAccount(String AccountId, String name, String pass, String address, String phone, String isSell, String isAdmin ) {
+//        double price1 = Double.parseDouble(price);
+//        int pID1 = Integer.parseInt(productID);
+        String sql = "update users set \n"
+                + "user_name = ?,\n"
+                + "password= ?,\n"
+                + "address= ?,\n"
+                + "phone= ?,\n"
+                + "isSell= ?,\n"
+                + "isAdmin= ?\n"
+                + "where user_id =?;";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);// kết nối với sql
+            st.setString(1, name);// truyền pid vào dấu ? thứ nhất
+            st.setString(2, pass);
+            st.setString(3, address);
+            st.setString(4, phone);
+            st.setString(5, isSell);
+            st.setString(6, isAdmin);
+            st.setString(7, AccountId);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+//test có kết nối được với database không
     public static void main(String[] args) {
         UserDao u = new UserDao();
         User c = u.checkUserExist("maimy");
         User a = u.loginByName("tienduc", "1234567");
-         u.addAccount("TranLoan", "jknk", "Nam Định", "0913927101", "0", "1");
+        u.addAccount("TranLoan", "jknk", "Nam Định", "0913927101", "0", "1");
+        u.EditAccount("13","TranLoan", "jknk", "Nam Định", "0913927101", "0", "1");
         List<User> list = u.getAll();
         int t = u.getTotalAccount();
         List<User> lista = u.pagingAccount15(1);
         for (User o : lista) {
             System.out.println(o);
         }
+
+        User lID = u.getAccountByID("3");
         System.out.println(t);
         System.out.println(a);
+        System.out.println(lID);
     }
 }

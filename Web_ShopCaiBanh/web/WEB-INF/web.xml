@@ -9,8 +9,8 @@
         <servlet-class>Controller.CategorySevlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>detailSevlet</servlet-name>
-        <servlet-class>Controller.detailSevlet</servlet-class>
+        <servlet-name>DetailProduct</servlet-name>
+        <servlet-class>Controller.DetailProduct</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SearchControl</servlet-name>
@@ -41,12 +41,12 @@
         <servlet-class>Controller.AddControl</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>LoadControl</servlet-name>
-        <servlet-class>Controller.LoadControl</servlet-class>
+        <servlet-name>LoadProduct</servlet-name>
+        <servlet-class>Controller.LoadProduct</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>EditControl</servlet-name>
-        <servlet-class>Controller.EditControl</servlet-class>
+        <servlet-name>EditProduct</servlet-name>
+        <servlet-class>Controller.EditProduct</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ManagerAccount</servlet-name>
@@ -55,6 +55,18 @@
     <servlet>
         <servlet-name>AddAccount</servlet-name>
         <servlet-class>Controller.AddAccount</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DetailAccount</servlet-name>
+        <servlet-class>Controller.DetailAccount</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadAccount</servlet-name>
+        <servlet-class>Controller.LoadAccount</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditAccount</servlet-name>
+        <servlet-class>Controller.EditAccount</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeControl</servlet-name>
@@ -65,7 +77,7 @@
         <url-pattern>/category</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>detailSevlet</servlet-name>
+        <servlet-name>DetailProduct</servlet-name>
         <url-pattern>/detail</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
@@ -97,11 +109,11 @@
         <url-pattern>/add</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>LoadControl</servlet-name>
+        <servlet-name>LoadProduct</servlet-name>
         <url-pattern>/loadproduct</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>EditControl</servlet-name>
+        <servlet-name>EditProduct</servlet-name>
         <url-pattern>/edit</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
@@ -111,6 +123,18 @@
     <servlet-mapping>
         <servlet-name>AddAccount</servlet-name>
         <url-pattern>/addaccount</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DetailAccount</servlet-name>
+        <url-pattern>/detailaccount</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadAccount</servlet-name>
+        <url-pattern>/loadaccount</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditAccount</servlet-name>
+        <url-pattern>/editaccount</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

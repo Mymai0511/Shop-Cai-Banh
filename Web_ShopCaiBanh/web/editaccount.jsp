@@ -23,7 +23,7 @@
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-12">
-                            <h2>Edit <b>Product</b></h2>
+                            <h2>Edit <b>Account</b></h2>
                         </div>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
             <div id ="editEmployeeModal">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form action="edit" method="post">
+                        <form action="editaccount" method="post">
                             <div class="modal-header">						
                                 <h4 class="modal-title">Lazy Cake</h4>
 
@@ -46,35 +46,33 @@
                                     <input value="${detail.name}" name="name" type="text" class="form-control" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Image</label>
-                                    <input value="${detail.img}" name="image" type="text" class="form-control" required>
+                                    <label>Pass</label>
+                                    <input value="${detail.password}" name="pass" type="text" class="form-control" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Price</label>
-                                    <input value="${detail.price}" name="price" type="text" class="form-control" required>
+                                    <label>Address</label>
+                                    <input value="${detail.address}" name="address" type="text" class="form-control" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Stock</label>
-                                    <input value="${detail.stock}" name="stock" type="text" class="form-control" required>
-                                </div>                           
+                                    <label>Phone</label>
+                                    <input value="${detail.phone}" name="phone" type="text" class="form-control" required>
+                                </div>   
                                 <div class="form-group">
-                                    <label>Title</label>
-                                    <textarea name="title" class="form-control" required>${detail.title}</textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label>Description</label>
-                                    <textarea name="description" class="form-control" required>${detail.description}</textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label>Category</label>
-                                    <select name="category" class="form-select" aria-label="Default select example">
-                                        <c:forEach items="${listC}" var="o">
+                                    <label>isSell</label>
+                                    <select name="sell" class="form-select" aria-label="Default select example">
 
-                                            <option ${tag.equals(o.id)?"selected":"" } value="${o.id}">${o.name}</option>
-                                            <!-- Lấy về được id để add sản phẩm và hiện thị là name -->
-                                        </c:forEach>
+                                        <option value="1">True</option>
+                                        <option ${detail.isSell==false?"selected":"" } value="0">False</option>
                                     </select>
                                 </div>
+                                <div class="form-group">
+                                    <label>isAdmin</label>
+                                    <select name="admin" class="form-select" aria-label="Default select example">
+                                        <option value="1">True</option>
+                                        <option ${detail.isAdmin==false?"selected":"" } value="0">False</option>
+                                    </select>
+                                </div>
+
 
                             </div>
                             <div class="modal-footer">

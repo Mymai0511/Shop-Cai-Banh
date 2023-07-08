@@ -107,6 +107,7 @@ public class ProductDAO extends DBContext {
                 p.setImg(rs.getString("img"));
                 p.setTitle(rs.getString("title"));
                 p.setDescription(rs.getString("description"));
+                p.setCid(rs.getString("category_id"));
                 return p;
             }
         } catch (SQLException e) {
@@ -278,6 +279,7 @@ public class ProductDAO extends DBContext {
         ProductDAO p = new ProductDAO();
         List<Product> list = p.pagingProduct6(8);
         Product plast = p.getLast();
+        Product p2 = p.getProductByID("139");
         List<Product> listcID = p.getProductByCID("2");
         List<Product> listSearch = p.searchByName("chocolate");
         int a = p.getTotalProduct();
@@ -290,5 +292,6 @@ public class ProductDAO extends DBContext {
         System.out.println(listcID);
 //        System.out.println(listSearch);
         System.out.println(a);
+        System.out.println(p2);
     }
 }

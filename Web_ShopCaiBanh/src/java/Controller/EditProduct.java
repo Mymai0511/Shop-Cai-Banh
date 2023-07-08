@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author DELL
  */
-public class EditControl extends HttpServlet {
+public class EditProduct extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -41,7 +41,8 @@ public class EditControl extends HttpServlet {
         
         ProductDAO dao = new ProductDAO();
         dao.EditProduct(id1, name1, price1, stock1, image1, title1, desc1, category1);
-        response.sendRedirect("managerproduct");    } 
+        response.sendRedirect("managerproduct");    
+    } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
