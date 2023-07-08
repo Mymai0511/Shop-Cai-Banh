@@ -33,8 +33,8 @@
         <servlet-class>Controller.ManagerProduct</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>DeleteControl</servlet-name>
-        <servlet-class>Controller.DeleteControl</servlet-class>
+        <servlet-name>DeleteProduct</servlet-name>
+        <servlet-class>Controller.DeleteProduct</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AddControl</servlet-name>
@@ -67,6 +67,10 @@
     <servlet>
         <servlet-name>EditAccount</servlet-name>
         <servlet-class>Controller.EditAccount</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteAccount</servlet-name>
+        <servlet-class>Controller.DeleteAccount</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeControl</servlet-name>
@@ -101,7 +105,7 @@
         <url-pattern>/managerproduct</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>DeleteControl</servlet-name>
+        <servlet-name>DeleteProduct</servlet-name>
         <url-pattern>/delete</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
@@ -135,6 +139,10 @@
     <servlet-mapping>
         <servlet-name>EditAccount</servlet-name>
         <url-pattern>/editaccount</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteAccount</servlet-name>
+        <url-pattern>/deleteaccount</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

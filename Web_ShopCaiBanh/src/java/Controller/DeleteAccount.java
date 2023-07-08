@@ -5,7 +5,7 @@
 
 package Controller;
 
-import DAL.ProductDAO;
+import DAL.UserDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author DELL
  */
-public class DeleteControl extends HttpServlet {
+public class DeleteAccount extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -29,10 +29,10 @@ public class DeleteControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String pID = request.getParameter("pid");
-        ProductDAO dao = new ProductDAO();
-        dao.deleteProduct(pID);
-        response.sendRedirect("managerproduct");
+        String aID = request.getParameter("aid");
+        UserDao dao = new UserDao();
+        dao.deleteAccount(aID);
+        response.sendRedirect("manageraccount");
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -202,7 +202,7 @@ public class UserDao extends DBContext {
         return null;
     }
 
-    public void EditAccount(String AccountId, String name, String pass, String address, String phone, String isSell, String isAdmin ) {
+    public void EditAccount(String AccountId, String name, String pass, String address, String phone, String isSell, String isAdmin) {
 //        double price1 = Double.parseDouble(price);
 //        int pID1 = Integer.parseInt(productID);
         String sql = "update users set \n"
@@ -228,13 +228,25 @@ public class UserDao extends DBContext {
         }
     }
 
+    public void deleteAccount(String aid) {
+        List<User> list = new ArrayList<>();
+        String sql = "delete from Users where user_id = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);// kết nối với sql
+            st.setString(1, aid);// truyền pid vào dấu ? thứ nhất
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
 //test có kết nối được với database không
     public static void main(String[] args) {
         UserDao u = new UserDao();
         User c = u.checkUserExist("maimy");
         User a = u.loginByName("tienduc", "1234567");
         u.addAccount("TranLoan", "jknk", "Nam Định", "0913927101", "0", "1");
-        u.EditAccount("13","TranLoan", "jknk", "Nam Định", "0913927101", "0", "1");
+        u.EditAccount("13", "TranLoan", "jknk", "Nam Định", "0913927101", "0", "1");
         List<User> list = u.getAll();
         int t = u.getTotalAccount();
         List<User> lista = u.pagingAccount15(1);
