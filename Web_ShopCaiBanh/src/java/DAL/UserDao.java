@@ -114,14 +114,63 @@ public class UserDao extends DBContext {
         }
     }
 
+    // đếm số lương acount trong database
+    public int getTotalAccount() {
+
+        String sql = "select count (*) from users";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);// kết nối với sql
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
+
+    public List<User> pagingAccount15(int index) {
+        List<User> list = new ArrayList<>();
+        // lấy dữ liệu bảng users
+        String sql = "select * from users\n"
+                + "order by user_id\n"
+                + "offset ? rows fetch next 15 rows only;";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);// kết nối với sql
+            st.setInt(1, (index - 1) * 15);
+            ResultSet rs = st.executeQuery();// trả về kết quả từ sql- nhiều bản ghi
+            while (rs.next()) {
+                User u = new User();
+                u.setId(rs.getInt("user_id"));
+                u.setName(rs.getString("user_name"));
+                u.setEmail(rs.getString("email"));
+                u.setPassword(rs.getString("password"));
+                u.setAddress(rs.getString("address"));
+                u.setGender(rs.getBoolean("gender"));
+                u.setPhone(rs.getString("phone"));
+                u.setIsSell(rs.getBoolean("isSell"));
+                u.setIsAdmin(rs.getBoolean("isAdmin"));
+                list.add(u);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
     //test có kết nối được với database không
     public static void main(String[] args) {
-        UserDao p = new UserDao();
-        User u = p.checkUserExist("maimy");
-        User a = p.loginByName("tienduc", "1234567");
-        List<User> list = p.getAll();
-
-        System.out.println(list);
+        UserDao u = new UserDao();
+        User c = u.checkUserExist("maimy");
+        User a = u.loginByName("tienduc", "1234567");
+        List<User> list = u.getAll();
+        int t = u.getTotalAccount();
+        List<User> lista = u.pagingAccount15(1);
+        for (User o : lista) {
+            System.out.println(o);
+        }
+        System.out.println(t);
         System.out.println(a);
     }
 }

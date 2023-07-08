@@ -1,4 +1,6 @@
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -28,7 +30,7 @@
                             <h2>Manager <b>Account</b></h2>
                         </div>
                         <div class="col-sm-6">
-                            <a href="#addEmployeeModal"  class="btn  button1" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
+                            <a href="#addEmployeeModal"  class="btn  button1" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Account</span></a>
                             <a href="#deleteEmployeeModal" class="btn button1" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
                         </div>
                     </div>
@@ -53,7 +55,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach items="${listP}" var="o">
+                        <c:forEach items="${listA}" var="o">
                             <tr>
                                 <td>
                                     <span class="custom-checkbox">
@@ -63,11 +65,11 @@
                                 </td>
                                 <td>${o.id}</td>
                                 <td>${o.name}</td>
-                                <td> </td>
-                                <td>${o.price} $</td>
-                                <td>${o.stock} </td>
-                                <td>${o.stock} </td>
-                                <td>${o.stock} </td>
+                                <td>${o.password}</td>
+                                <td>${o.address}</td>
+                                <td>${o.phone} </td>
+                                <td>${o.isAdmin} </td>
+                                <td>${o.isSell} </td>
                                 <td>
                                     <a href="loadproduct?pid=${o.id}"  class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                                     <a href="delete?pid=${o.id}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
@@ -77,15 +79,12 @@
                     </tbody>
                 </table>
                 <div class="clearfix">
-                    <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
                     <ul class="pagination">
-                        <li class="page-item disabled"><a href="#">Previous</a></li>
-                        <li class="page-item"><a href="#" class="page-link">1</a></li>
-                        <li class="page-item"><a href="#" class="page-link">2</a></li>
-                        <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                        <li class="page-item"><a href="#" class="page-link">4</a></li>
-                        <li class="page-item"><a href="#" class="page-link">5</a></li>
-                        <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                        <c:forEach begin="1"  end="${endP}" var="i">
+                            <li class="page-item  ${tagA == i ?  "active":"" }">                        
+                                <a href="manageraccount?index=${i}" class="page-link">${i}</a>                              
+                            </li>
+                        </c:forEach >
                     </ul>
                 </div>
             </div>
@@ -96,7 +95,7 @@
                 <div class="modal-content">
                     <form action="add" method="post">
                         <div class="modal-header">						
-                            <h4 class="modal-title">Add Product</h4>
+                            <h4 class="modal-title">Add Account</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">					
@@ -129,7 +128,7 @@
                                 <select name="category" class="form-select" aria-label="Default select example">
                                     <c:forEach items="${listC}" var="o">
                                         <option value="${o.id}">${o.name}</option>
-                                        <!-- L?y v? ???c id ?? add s?n ph?m v� hi?n th? l� name -->
+                                        <!-- Lấy về được id để add sản phẩm và hiện thị là name -->
                                     </c:forEach>
                                 </select>
                             </div>
@@ -201,7 +200,7 @@
         </div>
         <script src="app.js" type="text/javascript"></script>
         <script>
-               
+
         </script>
     </body>
 </html>
