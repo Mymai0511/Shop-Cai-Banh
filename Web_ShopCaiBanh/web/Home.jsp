@@ -45,7 +45,7 @@
                                                 <p class="btn btn-block button button1">${o.price}$</p>
                                             </div>
                                             <div class="col">
-                                                <a href="#" class="btn btn-success btn-block button button8">Add to cart</a>
+                                                <a href="AddToCart?pids=${o.id}&quantity=1" class="btn btn-success btn-block button button8">Add to cart</a>
                                             </div>
                                         </div>
                                     </div>

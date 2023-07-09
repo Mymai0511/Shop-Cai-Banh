@@ -23,12 +23,12 @@ create table Roles
 
 create table Users(
 	user_id int identity(1,1) primary key,
-	user_name nvarchar(50)    ,
-	email nvarchar(100) NOT NULL,
+	user_name nvarchar(50) NOT NULL   ,
+	email nvarchar(100) ,
 	password nvarchar(20) NOT NULL,
 	address nvarchar(100) ,
 	gender BIT	  ,
-	phone nchar(11),
+	phone char(10),
 	isAdmin BIT,
 	isSell BIT
 	

@@ -1,0 +1,54 @@
+.bg-dark {
+    background-color: #000000!important;
+}
+.navbar-dark .navbar-brand {
+    color: #ff4081;
+}
+.navbar-dark .navbar-nav .nav-link {
+    color: #ff4081;
+}
+.btn-secondary {
+    color: #fff;
+    background-color: #000000;
+    border-color: #cccccc;
+}
+.btn-success {
+    color: #000000;
+    background-color: #ff4081;
+    border-color: #ff4081;
+}
+
+.btn-danger {
+    color: #000000;
+    background-color: #ffaebd;
+    border-color: #ffaebd;
+}
+
+.btn-dark {
+    color: #000000;
+    background-color: #ffaebd;
+    border-color: #ffaebd;
+}
+
+.jumbotron {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #fdf4f6;
+    border-radius: .3rem;
+}
+
+.bg-light {
+    background-color: #fdf4f6!important;
+}
+
+.button1 {
+    background-color: #ff4081;
+    color: black;
+    border: 2px solid #ff4081;
+}
+
+.button2 {
+    background-color: #ffaebd;
+    color: black;
+    border: 2px solid #ffaebd;
+}
