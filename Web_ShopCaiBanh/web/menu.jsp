@@ -29,7 +29,7 @@
 
                 <c:if test="${sessionScope.acc != null}">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Hello ${sessionScope.acc.name}</a>
+                        <a class="nav-link" href="loadaccount?aid=${sessionScope.acc.id}">Hello ${sessionScope.acc.name}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="logout">Logout</a>

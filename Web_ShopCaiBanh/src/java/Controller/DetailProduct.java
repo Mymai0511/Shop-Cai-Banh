@@ -50,7 +50,7 @@ public class DetailProduct extends HttpServlet {
         request.setAttribute("listC", listCategorys);// đẩy list thành listC lên trang jsp
         request.setAttribute("p", pLast);
         request.setAttribute("detail", pID);
-        request.getRequestDispatcher("Detail.jsp").forward(request, response);
+        request.getRequestDispatcher("detail.jsp").forward(request, response);
 
     }
 
