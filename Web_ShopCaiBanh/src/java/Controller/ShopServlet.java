@@ -2,64 +2,55 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
+
 package Controller;
 
-import DAL.CategoryDAO;
+import DAL.ProductDAO;
+import Model.Cart;
+import Model.CartItem;
+import Model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import DAL.ProductDAO;
-import Model.Category;
-import Model.Product;
 
 /**
  *
  * @author DELL
  */
-public class SearchControl extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
+public class ShopServlet extends HttpServlet {
+   
+    /** 
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        request.setCharacterEncoding("UTF-8");//tìm kiếm bằng tiếng việt-thêm UTF-8 cho request
-        
-        CategoryDAO c = new CategoryDAO();// gọi CategoryDAO
-        List<Category> listCategorys = c.getAll();
-        //b2: det data to jsp
-        request.setAttribute("listC", listCategorys);// đẩy list thành listC lên trang jsp
-
-        ProductDAO p = new ProductDAO();
-        Product pLast = p.getLast();
-        request.setAttribute("p", pLast);
-        
-        String txtSearch = request.getParameter("textSearch");// lấy đc text ng dùng nhập vào để tìm kiếm
-        List<Product> listSearch = p.searchByName(txtSearch);
-        request.setAttribute("listP", listSearch);
-        request.setAttribute("txtS", txtSearch);
-        request.getRequestDispatcher("Home.jsp").forward(request, response);
-
-    }
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ShopServlet</title>");  
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ShopServlet at " + request.getContextPath () + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
+    } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
+    /** 
      * Handles the HTTP <code>GET</code> method.
-     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -67,13 +58,34 @@ public class SearchControl extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
+    throws ServletException, IOException {
+        ProductDAO dao = new ProductDAO();
+        List<Product> listP = dao.getAll();
+        Cookie[] arr = request.getCookies();
+        String txt = "";
+        if (arr!=null) {
+            for(Cookie o:arr){ // lấy ra cookie có tên là cart rồi truyeeng vào txt 
+                if(o.getName().equals("cart")){
+                    txt+=o.getValue();
+                }
+            }
+        }
+        
+        Cart cart = new Cart (txt, listP);
+        List<CartItem> listItem = cart.getItems();
+        int n;
+        if (listItem!= null) {
+            n= listItem.size();
+        } else {
+            n=0;
+        }
+        request.setAttribute("size", n);
+        request.setAttribute("listP", listP);
+        request.getRequestDispatcher(.....).forward(request, response);
+    } 
 
-    /**
+    /** 
      * Handles the HTTP <code>POST</code> method.
-     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -81,13 +93,12 @@ public class SearchControl extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
+    /** 
      * Returns a short description of the servlet.
-     *
      * @return a String containing servlet description
      */
     @Override

@@ -116,12 +116,16 @@ public class ProductDAO extends DBContext {
         return null;
     }
 
-    public List<Product> searchByName(String txtSearch) {
+    public List<Product> searchByName(String txtSearch, int index) {
         List<Product> list = new ArrayList<>();
-        String sql = "select *from Product where product_name like ?";
+        String sql = "select * from Product \n"
+                + "where product_name like ?\n"
+                + "order by product_id \n"
+                + "offset ? rows fetch next 6 rows only;";
         try {
             PreparedStatement st = connection.prepareStatement(sql);// kết nối với sql
             st.setString(1, "%" + txtSearch + "%");// truyền cid vào dấu ? thứ nhất
+            st.setInt(2, (index - 1) * 6);
             ResultSet rs = st.executeQuery();// trả về kết quả từ sql- nhiều bản ghi
             while (rs.next()) {
                 Product p = new Product();
@@ -140,6 +144,24 @@ public class ProductDAO extends DBContext {
             System.out.println(e);
         }
         return list;
+    }
+
+    // đếm số lương acount trong database
+    public int getTotalProductSearchByName(String txtSearch) {
+
+        String sql = "select count (*) from product \n"
+                + "where product_name like ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);// kết nối với sql
+            st.setString(1, "%" + txtSearch + "%");// truyền cid vào dấu ? thứ nhất
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return 0;
     }
 
     public void deleteProduct(String pid) {
@@ -281,10 +303,10 @@ public class ProductDAO extends DBContext {
         Product plast = p.getLast();
         Product p2 = p.getProductByID("139");
         List<Product> listcID = p.getProductByCID("2");
-        List<Product> listSearch = p.searchByName("chocolate");
-        int a = p.getTotalProduct();
+        List<Product> listSearch = p.searchByName("cake", 2);
+        int a = p.getTotalProductSearchByName("cake");
         //p.AddProduct("23123", "1.2", "dfdf", "fadfd", "fwdf", "vdv", "2");
-        for (Product o : list) {
+        for (Product o : listSearch) {
             System.out.println(o);
         }
 //        System.out.println(plast);

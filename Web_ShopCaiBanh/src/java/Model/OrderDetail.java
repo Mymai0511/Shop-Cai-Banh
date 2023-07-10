@@ -12,60 +12,64 @@ package Model;
 public class OrderDetail {
 
     private int id;
-    private int orderId;
-    private Product product;
+    private int oID, pID, quantity;
     private double price;
-    private int quantity;
+
+    public OrderDetail(int id, int oID, int pID, int quantity, double price) {
+        this.id = id;
+        this.oID = oID;
+        this.pID = pID;
+        this.quantity = quantity;
+        this.price = price;
+    }
 
     public OrderDetail() {
-    }
-
-    public OrderDetail(int id, int orderId, Product product, double price, int quantity) {
-        this.id = id;
-        this.orderId = orderId;
-        this.product = product;
-        this.price = price;
-        this.quantity = quantity;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 
     public int getId() {
         return id;
     }
 
-    public int getOrderId() {
-        return orderId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public Product getProduct() {
-        return product;
+    public int getoID() {
+        return oID;
     }
 
-    public double getPrice() {
-        return price;
+    public void setoID(int oID) {
+        this.oID = oID;
+    }
+
+    public int getpID() {
+        return pID;
+    }
+
+    public void setpID(int pID) {
+        this.pID = pID;
     }
 
     public int getQuantity() {
         return quantity;
     }
 
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderDetail{" + "id=" + id + ", oID=" + oID + ", pID=" + pID + ", quantity=" + quantity + ", price=" + price + '}';
+    }
+
+   
 }

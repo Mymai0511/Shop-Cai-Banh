@@ -5,6 +5,7 @@
  */
 package Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,18 +14,10 @@ import java.util.List;
  */
 public class Cart {
 
-    private int id;
-    private int userId;
-    private float totalPrice;
     private List<CartItem> items;
 
     public Cart() {
-    }
-
-    public Cart(int id, int userId, float totalPrice) {
-        this.id = id;
-        this.userId = userId;
-        this.totalPrice = totalPrice;
+        items = new ArrayList<>();
     }
 
     public Cart(List<CartItem> items) {
@@ -40,37 +33,19 @@ public class Cart {
         this.items = items;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public float getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(float totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-    private CartItem getItemById(int id) {
+    // trả về item trong list item bằng id
+    private CartItem getItemByID(int id) {
         for (CartItem item : items) {
             if (item.getProduct().getId() == id) {
                 return item;
             }
         }
         return null;
+    }
+
+    // trả về số lượng của item trong giỏ hàng
+    public int getQuantityByID(int id) {
+        return getItemByID(id).getQuantity();
     }
 
     private boolean checkExist(int id) {
@@ -82,26 +57,62 @@ public class Cart {
         return false;
     }
 
+    //thêm sản phẩm vào giỏ hàng
     public void addItem(CartItem newItem) {
-        if (checkExist(newItem.getProduct().getId())) {
-            CartItem olditem = getItemById(newItem.getProduct().getId());
+        // nếu id sản phẩm đã có trong list
+        if (getItemByID(newItem.getProduct().getId()) != null) {
+            CartItem olditem = getItemByID(newItem.getProduct().getId());
+            //tăng quantity lên = old+ new
             olditem.setQuantity(olditem.getQuantity() + newItem.getQuantity());
-        } else {
+
+        } else {// chưa tồn tại: thêm item vào list
             items.add(newItem);
         }
     }
 
     public void removeItem(int id) {
-        if (getItemById(id) != null) {
-            items.remove(getItemById(id));
+        // đã tồn tại thì xóa
+        if (getItemByID(id) != null) {
+            items.remove(getItemByID(id));
         }
     }
 
+    //trả về tổng tiền của hóa đơn
     public double getTotalMoney() {
         double t = 0;
         for (CartItem i : items) {
-            t += (i.getQuantity() * i.getProduct().getPrice());
+            t += (i.getQuantity() * i.getPrice());
         }
         return t;
+    }
+
+    //trả về sản phẩm trong giỏ hàng
+    private Product getProductByID(int id, List<Product> list) {
+        for (Product product : list) {
+            if (product.getId() == id) {
+                return product;
+            }
+        }
+        return null;
+    }
+
+    // txt=item(id:quantity),item(id:quantity)....
+    public Cart(String txt, List<Product> list) {
+        items = new ArrayList<>();
+        try {
+            if (txt != null && txt.length() != 0) {
+                String[] s = txt.split(",");
+                for (String i : s) {
+                    String[] n = i.split(":");
+                    int id = Integer.parseInt(n[0]);
+                    int quantity = Integer.parseInt(n[1]);
+                    Product p = getProductByID(id, list);
+                    CartItem t = new CartItem(p, quantity, p.getPrice() * 2);
+                    addItem(t);
+                }
+            }
+        } catch (NumberFormatException e) {
+        }
+
     }
 }

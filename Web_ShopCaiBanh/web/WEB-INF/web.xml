@@ -5,16 +5,8 @@
         <servlet-class>Controller.HomeControl</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CategorySevlet</servlet-name>
-        <servlet-class>Controller.CategorySevlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>DetailProduct</servlet-name>
         <servlet-class>Controller.DetailProduct</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>SearchControl</servlet-name>
-        <servlet-class>Controller.SearchControl</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoginControl</servlet-name>
@@ -80,21 +72,17 @@
         <servlet-name>AddToCart</servlet-name>
         <servlet-class>Controller.AddToCart</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShopServlet</servlet-name>
+        <servlet-class>Controller.ShopServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeControl</servlet-name>
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CategorySevlet</servlet-name>
-        <url-pattern>/category</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>DetailProduct</servlet-name>
         <url-pattern>/detail</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SearchControl</servlet-name>
-        <url-pattern>/search</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginControl</servlet-name>
@@ -159,6 +147,10 @@
     <servlet-mapping>
         <servlet-name>AddToCart</servlet-name>
         <url-pattern>/AddToCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShopServlet</servlet-name>
+        <url-pattern>/shop</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -10,6 +10,7 @@ import Model.Category;
 import Model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -36,40 +37,71 @@ public class HomeControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         //load data
-        //b1: get data from DAO
+        String txtSearch = request.getParameter("textSearch");// lấy đc text ng dùng nhập vào để tìm kiếm
+        String cateID = request.getParameter("cid");
+        String indexPaging = request.getParameter("index");
+
         CategoryDAO c = new CategoryDAO();// gọi CategoryDAO
         List<Category> listCategorys = c.getAll();
-        //b2: det data to jsp
         request.setAttribute("listC", listCategorys);// đẩy list thành listC lên trang jsp
 
         ProductDAO p = new ProductDAO();
-
         Product pLast = p.getLast();
         request.setAttribute("p", pLast);
-        
-//        //lấy tất cả sản phẩm
-//        List<Product> listProduct = p.getAll();
-//        request.setAttribute("listP", listProduct);
 
-        //phân trang
-        int count = p.getTotalProduct();///39
-        int endPage = count / 6;
-        if (count % 6 != 0) {// có dư thì cộng thêm 1 trang
-            endPage++;
-        }
-        request.setAttribute("endP", endPage);
-        
-        //lấy sản phẩm đã phân trang
-        String indexPaging = request.getParameter("index");
+        // phân trang
         if (indexPaging == null) {
             indexPaging = "1";
         }
         int index = Integer.parseInt(indexPaging);
-        List<Product> listPaging = p.pagingProduct6(index);
-        request.setAttribute("listP", listPaging);
 
-        //đánh dấu trang đang hiển thị
+        int count = 0;
+        int endPage = 0;
+        List<Product> listP = new ArrayList<Product>();
+
+        if (cateID == null) {
+            if (txtSearch == null) {
+                count = p.getTotalProduct();///39
+                endPage = count / 6;
+                if (count % 6 != 0) {// có dư thì cộng thêm 1 trang
+                    endPage++;
+                }
+
+                listP = p.pagingProduct6(index);
+            } else {
+                count = p.getTotalProductSearchByName(txtSearch);///39
+                endPage = count / 6;
+                if (count % 6 != 0) {// có dư thì cộng thêm 1 trang
+                    endPage++;
+                }
+
+                listP = p.searchByName(txtSearch, index);
+            }
+
+        } else {
+            if (txtSearch == null) {
+                count = c.getTotalProductByCID(cateID);///39
+                endPage = count / 6;
+                if (count % 6 != 0) {// có dư thì cộng thêm 1 trang
+                    endPage++;
+                }
+
+                listP = c.pagingProductByCID(cateID, index);
+            } else {
+                count = p.getTotalProductSearchByName(txtSearch);///39
+                endPage = count / 6;
+                if (count % 6 != 0) {// có dư thì cộng thêm 1 trang
+                    endPage++;
+                }
+
+                listP = p.searchByName(txtSearch, index);
+            }
+        }
+        request.setAttribute("endP", endPage);
+        request.setAttribute("listP", listP);
         request.setAttribute("tagP", index);
+        request.setAttribute("tagC", cateID);
+        request.setAttribute("txtS", txtSearch);
         request.getRequestDispatcher("home.jsp").forward(request, response);
 
     }

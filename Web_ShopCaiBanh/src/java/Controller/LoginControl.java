@@ -61,7 +61,7 @@ public class LoginControl extends HttpServlet {
             
             HttpSession session1 = request.getSession();
             session1.setAttribute("acc", a);
-            session1.setMaxInactiveInterval(5);//xét thời gian tồn tại của session trong 10 giây
+            session1.setMaxInactiveInterval(60*5);//xét thời gian tồn tại của session trong 10 giây
             response.sendRedirect("home");
         } else //login fail
         {

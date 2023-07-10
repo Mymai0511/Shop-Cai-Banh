@@ -14,19 +14,19 @@ import java.sql.Date;
 public class Order {
 
     private int id;
-    private User user;
-    private Date orderDate;
-    private double total;
+    private int cID;
+    private String Date;
+    private double totalmoney;
     private String notes;
 
     public Order() {
     }
 
-    public Order(int id, User user, Date orderDate, double total, String notes) {
+    public Order(int id, int cID, String Date, double totalmoney, String notes) {
         this.id = id;
-        this.user = user;
-        this.orderDate = orderDate;
-        this.total = total;
+        this.cID = cID;
+        this.Date = Date;
+        this.totalmoney = totalmoney;
         this.notes = notes;
     }
 
@@ -38,28 +38,28 @@ public class Order {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public int getcID() {
+        return cID;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setcID(int cID) {
+        this.cID = cID;
     }
 
-    public Date getOrderDate() {
-        return orderDate;
+    public String getDate() {
+        return Date;
     }
 
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
+    public void setDate(String Date) {
+        this.Date = Date;
     }
 
-    public double getTotal() {
-        return total;
+    public double getTotalmoney() {
+        return totalmoney;
     }
 
-    public void setTotal(double total) {
-        this.total = total;
+    public void setTotalmoney(double totalmoney) {
+        this.totalmoney = totalmoney;
     }
 
     public String getNotes() {
@@ -69,5 +69,12 @@ public class Order {
     public void setNotes(String notes) {
         this.notes = notes;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" + "id=" + id + ", cID=" + cID + ", Date=" + Date + ", totalmoney=" + totalmoney + ", notes=" + notes + '}';
+    }
+
+    
 
 }
