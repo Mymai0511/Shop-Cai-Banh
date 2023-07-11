@@ -42,10 +42,12 @@
                                         <p class="card-text show_txt">${o.title}</p>
                                         <div class="row">
                                             <div class="col">
-                                                <p class="btn btn-block button button1">${o.price}$</p>
+                                                <p class="btn btn-block button button1">${o.price*2}$</p>
                                             </div>
                                             <div class="col">
-                                                <a href="AddToCart?pids=${o.id}&quantity=1" class="btn btn-success btn-block button button8">Add to cart</a>
+                                               <!-- <a href="AddToCart?pids=${o.id}&quantity=1" class="btn btn-success btn-block button button8">Add to cart</a -->
+                                                <input type="button" class="btn btn-success btn-block button button8" onclick="buy('id')" value="Add to cart" />
+                                                                                                    <!-- khi click thì gọi đến "buy" và truyền vào id -->
                                             </div>
                                         </div>
                                     </div>
@@ -57,10 +59,20 @@
                         <ul class="pagination">
                             <c:forEach begin="1"  end="${endP}" var="i">
                                 <li class="page-item  ${tagP == i ?  "active":"" }">
-                                    <a href="home?index=${i}&textSearch=${txtS}&cid=${tagC}" class="page-link">${i}</a>
+                                    <c:if test="${txtS==null}">
+                                        <c:if test="${tagC==null}">
+                                            <a href="home?index=${i}" class="page-link">${i}</a>
+                                        </c:if>
+                                        <c:if test="${tagC!=null}">
+                                            <a href="home?index=${i}&cid=${tagC}" class="page-link">${i}</a>
+                                        </c:if>
+                                    </c:if>
+
+                                    <c:if test="${txtS!=null}">
+                                        <a href="home?index=${i}&textSearch=${txtS}" class="page-link">${i}</a>
+                                    </c:if>   
                                 </li>
                             </c:forEach >
-
                         </ul>
                     </div>
                 </div>
@@ -71,4 +83,6 @@
         <jsp:include page = "footer.jsp" ></jsp:include>
     </body>
 </html>
+
+
 

@@ -44,8 +44,8 @@
                 cursor: zoom-in;
             }
             .img-big-wrap img{
-                width: 100% !important;
-                height: auto !important;
+                width: 105% !important;
+
             }
         </style>
     </head>
@@ -56,7 +56,7 @@
                     <div class="col">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="Home.jsp">Trang chủ</a></li>
+                                <li class="breadcrumb-item"><a href="home">Trang chủ</a></li>
                                 <li class="breadcrumb-item"><a href="#">Danh mục</a></li>
                                 <li class="breadcrumb-item active" aria-current="#">Sub-category</li>
                             </ol>
@@ -86,63 +86,74 @@
                                     </article> <!-- gallery-wrap .end// -->
                                 </aside>
                                 <aside class="col-sm-7">
-                                    <article class="card-body p-5">
-                                        <h3 class="title mb-3">${detail.name}</h3>
+                                    <form name="f" action="" method="post">
+                                        <article class="card-body p-5">
+                                            <h3 class="title mb-3">${detail.name}</h3>
 
-                                        <p class="price-detail-wrap"> 
-                                            <span class="price h3 text-warning"> 
-                                                <span class="currency"></span><span class="num">${detail.price} VND</span>
-                                            </span> 
-                                            <!--<span>/per kg</span>--> 
-                                        </p> <!-- price-detail-wrap .// -->
-                                        <dl class="item-property">
-                                            <dt>Title:</dt>
-                                            <dd><p>${detail.title} </p></dd>                                            
-                                            <dt>Description:</dt>
-                                            <dd><p>${detail.description} </p></dd>
-                                        </dl>
-                                        <!--                                        <dl class="param param-feature">
-                                                                                    <dt>Model#</dt>
-                                                                                    <dd>12345611</dd>
-                                                                                </dl>   item-property-hor .// 
-                                                                                <dl class="param param-feature">
-                                                                                    <dt>Color</dt>
-                                                                                    <dd>Black and white</dd>
-                                                                                </dl>   item-property-hor .// 
-                                                                                <dl class="param param-feature">
-                                                                                    <dt>Delivery</dt>
-                                                                                    <dd>Russia, USA, and Europe</dd>
-                                                                                </dl>   item-property-hor .// -->
+                                            <p class="price-detail-wrap"> 
+                                                <span class="price h4 text-warning"> 
+                                                    <span class="currency"></span><span class="bloc_left_price">${detail.price} $</span>
+                                                </span> 
+                                                <!--<span>/per kg</span>--> 
+                                            </p> <!-- price-detail-wrap .// -->
+                                            <dl class="item-property">
+                                                <dt>Title:</dt>
+                                                <dd><p>${detail.title} </p></dd>                                            
+                                                <dt>Description:</dt>
+                                                <dd><p>${detail.description} </p></dd>
+                                            </dl>
+                                            <!--                                        <dl class="param param-feature">
+                                                                                        <dt>Model#</dt>
+                                                                                        <dd>12345611</dd>
+                                                                                    </dl>   item-property-hor .// 
+                                                                                    <dl class="param param-feature">
+                                                                                        <dt>Color</dt>
+                                                                                        <dd>Black and white</dd>
+                                                                                    </dl>   item-property-hor .// 
+                                                                                    <dl class="param param-feature">
+                                                                                        <dt>Delivery</dt>
+                                                                                        <dd>Russia, USA, and Europe</dd>
+                                                                                    </dl>   item-property-hor .// -->
 
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-sm-5">
-                                                <dl class="param param-inline">
-                                                    <dt>Quantity: </dt>
-                                                    <dd>
-                                                        <select class="form-control form-control-sm" style="width:70px;">
-                                                            <option> 1 </option>
-                                                            <option> 2 </option>
-                                                            <option> 3 </option>
-                                                        </select>
-                                                    </dd>
-                                                </dl>  <!-- item-property .// -->
-                                            </div> <!-- col.// -->
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-sm-5">
+                                                    <dl class="param param-inline">
+                                                        <dt>Quantity: </dt>
+                                                        <dd>
+                                                            <!-- <select class="form-control form-control-sm" style="width:70px;">
+                                                                <option> 1 </option>
+                                                                <option> 2 </option>
+                                                                <option> 3 </option>
+                                                            </select> -->
+                                                            <input type="number" name="num" value="1" class="form-control form-control-sm" style="width:70px;"/>
+                                                        </dd>
+                                                    </dl>  <!-- item-property .// -->
+                                                </div> <!-- col.// -->
 
-                                        </div> <!-- row.// -->
-                                        <hr>
-                                        <a href="#" class="btn btn-lg btn-primary text-uppercase"> Buy now </a>
-                                        <a href="#" class="btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> Add to cart </a>
-                                    </article> <!-- card-body.// -->
+                                            </div> <!-- row.// -->
+                                            <hr>
+                                            <a href="#" class="btn btn-lg button8 text-uppercase"> Buy now </a>
+                                            <a href="#" class="btn btn-lg button1 text-uppercase"> <i class="fas fa-shopping-cart"></i> Add to cart </a>
+                                        </article> <!-- card-body.// -->
+
+                                    </form>
+
                                 </aside> <!-- col.// -->
                             </div> <!-- row.// -->
                         </div> <!-- card.// -->
-
-
                     </div>
                 </div>
+
             </div>
         </div>
         <jsp:include page = "footer.jsp" ></jsp:include>
     </body>
 </html>
+<script type="text/javascript">
+    function buy(id) {
+        var m = document.f.num.values;
+        document.f.action = "buy?id" + id + "&num=" + m;
+        document.f.submit();
+    }
+</script>

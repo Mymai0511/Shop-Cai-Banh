@@ -76,6 +76,14 @@
         <servlet-name>ShopServlet</servlet-name>
         <servlet-class>Controller.ShopServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BuyControl</servlet-name>
+        <servlet-class>Controller.BuyControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ShowCartControl</servlet-name>
+        <servlet-class>Controller.ShowCartControl</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeControl</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -151,6 +159,14 @@
     <servlet-mapping>
         <servlet-name>ShopServlet</servlet-name>
         <url-pattern>/shop</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BuyControl</servlet-name>
+        <url-pattern>/buy</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowCartControl</servlet-name>
+        <url-pattern>/show</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

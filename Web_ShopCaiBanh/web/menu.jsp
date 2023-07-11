@@ -51,9 +51,9 @@
                         </button>
                     </div>
                 </div>
-                <a class="btn btn-success buttoncard btn-sm ml-3" href="ViewCart">
+                <a class="btn btn-success buttoncard btn-sm ml-3" href="show">
                     <i class="fa fa-shopping-cart"></i> Cart
-                    <span class="badge badge-light">3</span>
+                    <span class="badge badge-light">${size}</span>
                 </a>
             </form>
         </div>

@@ -6,6 +6,8 @@ package Controller;
 
 import DAL.CategoryDAO;
 import DAL.ProductDAO;
+import Model.Cart;
+import Model.CartItem;
 import Model.Category;
 import Model.Product;
 import java.io.IOException;
@@ -13,6 +15,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -59,8 +62,8 @@ public class HomeControl extends HttpServlet {
         int endPage = 0;
         List<Product> listP = new ArrayList<Product>();
 
-        if (cateID == null) {
-            if (txtSearch == null) {
+        if (txtSearch == null) {
+            if (cateID == null) {
                 count = p.getTotalProduct();///39
                 endPage = count / 6;
                 if (count % 6 != 0) {// có dư thì cộng thêm 1 trang
@@ -69,17 +72,6 @@ public class HomeControl extends HttpServlet {
 
                 listP = p.pagingProduct6(index);
             } else {
-                count = p.getTotalProductSearchByName(txtSearch);///39
-                endPage = count / 6;
-                if (count % 6 != 0) {// có dư thì cộng thêm 1 trang
-                    endPage++;
-                }
-
-                listP = p.searchByName(txtSearch, index);
-            }
-
-        } else {
-            if (txtSearch == null) {
                 count = c.getTotalProductByCID(cateID);///39
                 endPage = count / 6;
                 if (count % 6 != 0) {// có dư thì cộng thêm 1 trang
@@ -87,22 +79,50 @@ public class HomeControl extends HttpServlet {
                 }
 
                 listP = c.pagingProductByCID(cateID, index);
-            } else {
-                count = p.getTotalProductSearchByName(txtSearch);///39
-                endPage = count / 6;
-                if (count % 6 != 0) {// có dư thì cộng thêm 1 trang
-                    endPage++;
-                }
+            }
 
-                listP = p.searchByName(txtSearch, index);
+        }
+        if (txtSearch != null) {
+            count = p.getTotalProductSearchByName(txtSearch);///39
+            endPage = count / 6;
+            if (count % 6 != 0) {// có dư thì cộng thêm 1 trang
+                endPage++;
+            }
+
+            listP = p.searchByName(txtSearch, index);
+
+        }
+
+        //CART
+        Cookie[] arr = request.getCookies();
+        String txt = "";
+        if (arr != null) {
+            for (Cookie o : arr) { // lấy ra cookie có tên là cart rồi truyền vào txt 
+                if (o.getName().equals("cart")) {
+                    txt += o.getValue();
+                }
             }
         }
+
+        //tạo 1 cart chứa các sản phẩm có trong txt-cookie"cart". Từ txt và list<product>
+        Cart cart = new Cart(txt, listP);
+        //list<item> có trong cart và đếm số lượng
+        List<CartItem> listItem = cart.getItems();
+        int n;
+        if (listItem != null) {
+            n = listItem.size();
+        } else {
+            n = 0;
+        }
+        request.setAttribute("size", n);
+
         request.setAttribute("endP", endPage);
         request.setAttribute("listP", listP);
         request.setAttribute("tagP", index);
         request.setAttribute("tagC", cateID);
         request.setAttribute("txtS", txtSearch);
         request.getRequestDispatcher("home.jsp").forward(request, response);
+       
 
     }
 

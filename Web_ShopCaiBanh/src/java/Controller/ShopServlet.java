@@ -64,14 +64,16 @@ public class ShopServlet extends HttpServlet {
         Cookie[] arr = request.getCookies();
         String txt = "";
         if (arr!=null) {
-            for(Cookie o:arr){ // lấy ra cookie có tên là cart rồi truyeeng vào txt 
+            for(Cookie o:arr){ // lấy ra cookie có tên là cart rồi truyền vào txt 
                 if(o.getName().equals("cart")){
                     txt+=o.getValue();
                 }
             }
         }
         
+        //tạo 1 cart chứa các sản phẩm có trong txt-cookie"cart". Từ txt và list<product>
         Cart cart = new Cart (txt, listP);
+        //list<item> có trong cart và đếm số lượng
         List<CartItem> listItem = cart.getItems();
         int n;
         if (listItem!= null) {

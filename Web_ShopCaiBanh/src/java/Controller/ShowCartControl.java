@@ -4,11 +4,8 @@
  */
 package Controller;
 
-import DAL.CategoryDAO;
 import DAL.ProductDAO;
 import Model.Cart;
-import Model.CartItem;
-import Model.Category;
 import Model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author DELL
  */
-public class DetailProduct extends HttpServlet {
+public class ShowCartControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,48 +34,18 @@ public class DetailProduct extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        CategoryDAO c = new CategoryDAO();// gọi CategoryDAO
-        List<Category> listCategorys = c.getAll();
-        //b2: det data to jsp
-        request.setAttribute("listC", listCategorys);// đẩy list thành listC lên trang jsp
-
-        ProductDAO p = new ProductDAO();
-        Product pLast = p.getLast();
-        request.setAttribute("p", pLast);
-        
-        
-        String proID = request.getParameter("pid");
-        // đã lấy đc category id về
-        Product pID = p.getProductByID(proID);
-        
-//                //CART
-//        Cookie[] arr = request.getCookies();
-//        String txt = "";
-//        if (arr != null) {
-//            for (Cookie o : arr) { // lấy ra cookie có tên là cart rồi truyền vào txt 
-//                if (o.getName().equals("cart")) {
-//                    txt += o.getValue();
-//                }
-//            }
-//        }
-//
-//        //tạo 1 cart chứa các sản phẩm có trong txt-cookie"cart". Từ txt và list<product>
-//        Cart cart = new Cart(txt, listP);
-//        //list<item> có trong cart và đếm số lượng
-//        List<CartItem> listItem = cart.getItems();
-//        int n;
-//        if (listItem != null) {
-//            n = listItem.size();
-//        } else {
-//            n = 0;
-//        }
-//        request.setAttribute("size", n);
-
-        request.setAttribute("listC", listCategorys);// đẩy list thành listC lên trang jsp
-        request.setAttribute("p", pLast);
-        request.setAttribute("detail", pID);
-        request.getRequestDispatcher("detail.jsp").forward(request, response);
-
+        try ( PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ShowCartControl</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ShowCartControl at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -93,7 +60,22 @@ public class DetailProduct extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        ProductDAO dao = new ProductDAO();
+        List<Product> listP = dao.getAll();
+        Cookie[] arr = request.getCookies();
+        String txt = "";
+        if (arr != null) {
+            for (Cookie o : arr) { // lấy ra cookie có tên là cart rồi truyền vào txt 
+                if (o.getName().equals("cart")) {
+                    txt += o.getValue();
+                }
+            }
+        }
+
+        //tạo 1 cart chứa các sản phẩm có trong txt-cookie"cart". Từ txt và list<product>
+        Cart cart = new Cart(txt, listP);
+        request.setAttribute("cart", cart);
+        request.getRequestDispatcher("cart.jsp").forward(request, response);
     }
 
     /**

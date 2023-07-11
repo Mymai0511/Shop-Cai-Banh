@@ -37,21 +37,29 @@
                                             <thead>
                                                 <tr>
                                                     <th scope="col" class="border-0 bg-light">
-                                                        <div class="p-2 px-3 text-uppercase">Sản Phẩm</div>
+                                                        <div class="p-2 px-3 text-uppercase">No</div>
+                                                    </th>                                                    
+                                                    <th scope="col" class="border-0 bg-light">
+                                                        <div class="p-2 px-3 text-uppercase">Name</div>
                                                     </th>
                                                     <th scope="col" class="border-0 bg-light">
-                                                        <div class="py-2 text-uppercase">Đơn Giá</div>
+                                                        <div class="py-2 text-uppercase">Price</div>
                                                     </th>
                                                     <th scope="col" class="border-0 bg-light">
-                                                        <div class="py-2 text-uppercase">Số Lượng</div>
+                                                        <div class="py-2 text-uppercase">Quantity</div>
                                                     </th>
                                                     <th scope="col" class="border-0 bg-light">
-                                                        <div class="py-2 text-uppercase">Xóa</div>
+                                                        <div class="py-2 text-uppercase">Action</div>
                                                     </th>
                                                 </tr>
+
                                             </thead>
                                             <tbody>
-                                            <c:forEach items="${sessionScope['cart'].getItems()}" var="cart">
+                                            <c:set var="o" value="${requestScope.cart}"/>
+                                            <c:set var="tt" value="0"/>
+                                            <c:forEach items="${o.items}" var="i">
+                                                <c:set var="tt" value="${tt+1}"/>
+
                                                 <tr>
                                                     <th scope="row">
                                                         <div class="p-2">
@@ -81,25 +89,25 @@
                         </div>
 
                         <div class="row py-5 p-4 bg-white rounded shadow-sm">
-                        <!--    <div class="col-lg-6">
-                                <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Voucher</div>
-                                <div class="p-4">
-                                    <div class="input-group mb-4 border rounded-pill p-2">
-                                        <input type="text" placeholder="Nhập Voucher" aria-describedby="button-addon3" class="form-control border-0">
-                                        <div class="input-group-append border-0">
-                                            <button id="button-addon3" type="button" class="btn button2 px-4 rounded-pill"><i class="fa fa-gift mr-2"></i>Sử dụng</button>
+                            <!--    <div class="col-lg-6">
+                                    <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Voucher</div>
+                                    <div class="p-4">
+                                        <div class="input-group mb-4 border rounded-pill p-2">
+                                            <input type="text" placeholder="Nhập Voucher" aria-describedby="button-addon3" class="form-control border-0">
+                                            <div class="input-group-append border-0">
+                                                <button id="button-addon3" type="button" class="btn button2 px-4 rounded-pill"><i class="fa fa-gift mr-2"></i>Sử dụng</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div> -->
+                                </div> -->
                             <div class="col-lg-12">
                                 <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Thành tiền</div>
                                 <div class="p-4">
                                     <ul class="list-unstyled mb-4">
-                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tổng tiền hàng</strong><strong>100 $</strong></li>
-                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Phí vận chuyển</strong><strong>Free ship</strong></li>
-                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">VAT</strong><strong>10 $</strong></li>
-                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tổng thanh toán</strong>
+                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total money</strong><strong>100 $</strong></li>
+                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Shipping</strong><strong>Free ship</strong></li>
+                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">VAT</strong><strong>0 $</strong></li>
+                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total money</strong>
                                             <h5 class="font-weight-bold">110 $</h5>
                                         </li>
                                     </ul><a href="buy" class="btn button2 rounded-pill py-2 btn-block">Mua hàng</a>
