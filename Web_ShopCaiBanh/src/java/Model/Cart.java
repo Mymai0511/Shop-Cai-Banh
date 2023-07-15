@@ -96,12 +96,12 @@ public class Cart {
         return null;
     }
 
-    // txt=item(id:quantity),item(id:quantity)....
+    // txt=item(id:quantity).item(id:quantity)....
     public Cart(String txt, List<Product> list) {
         items = new ArrayList<>();
         try {
             if (txt != null && txt.length() != 0) {
-                String[] s = txt.split(",");
+                String[] s = txt.split("\\.");
                 for (String i : s) {
                     String[] n = i.split(":");
                     int id = Integer.parseInt(n[0]);

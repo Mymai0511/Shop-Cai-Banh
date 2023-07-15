@@ -65,24 +65,28 @@
         <servlet-class>Controller.DeleteAccount</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ViewCart</servlet-name>
-        <servlet-class>Controller.ViewCart</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>AddToCart</servlet-name>
-        <servlet-class>Controller.AddToCart</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ShopServlet</servlet-name>
-        <servlet-class>Controller.ShopServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>BuyControl</servlet-name>
         <servlet-class>Controller.BuyControl</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ShowCartControl</servlet-name>
         <servlet-class>Controller.ShowCartControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BuyNowControl</servlet-name>
+        <servlet-class>Controller.BuyNowControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProcessItemControl</servlet-name>
+        <servlet-class>Controller.ProcessItemControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteItemControl</servlet-name>
+        <servlet-class>Controller.DeleteItemControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckoutControl</servlet-name>
+        <servlet-class>Controller.CheckoutControl</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeControl</servlet-name>
@@ -149,24 +153,28 @@
         <url-pattern>/deleteaccount</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ViewCart</servlet-name>
-        <url-pattern>/ViewCart</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>AddToCart</servlet-name>
-        <url-pattern>/AddToCart</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ShopServlet</servlet-name>
-        <url-pattern>/shop</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>BuyControl</servlet-name>
         <url-pattern>/buy</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ShowCartControl</servlet-name>
         <url-pattern>/show</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BuyNowControl</servlet-name>
+        <url-pattern>/buynow</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcessItemControl</servlet-name>
+        <url-pattern>/process</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteItemControl</servlet-name>
+        <url-pattern>/deleteitem</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckoutControl</servlet-name>
+        <url-pattern>/checkout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

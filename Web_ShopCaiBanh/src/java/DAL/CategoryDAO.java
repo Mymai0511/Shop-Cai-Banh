@@ -86,15 +86,15 @@ public class CategoryDAO extends DBContext {
     }
 
     //test có kết nối được với database không
-    public static void main(String[] args) {
-        CategoryDAO c = new CategoryDAO();
-        List<Category> list = c.getAll();
-        int a = c.getTotalProductByCID("1");
-        List<Product> listPA = c.pagingProductByCID("1", 1);
-        System.out.println(list.get(0).getName());
-        for (Product o : listPA) {
-            System.out.println(o);
-        }
-        System.out.println(a);
-    }
+//    public static void main(String[] args) {
+//        CategoryDAO c = new CategoryDAO();
+//        List<Category> list = c.getAll();
+//        int a = c.getTotalProductByCID("1");
+//        List<Product> listPA = c.pagingProductByCID("1", 1);
+//        System.out.println(list.get(0).getName());
+//        for (Product o : listPA) {
+//            System.out.println(o);
+//        }
+//        System.out.println(a);
+//    }
 }

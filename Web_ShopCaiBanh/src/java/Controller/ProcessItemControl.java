@@ -16,13 +16,12 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.eclipse.jdt.internal.compiler.ast.FalseLiteral;
 
 /**
  *
  * @author DELL
  */
-public class BuyControl extends HttpServlet {
+public class ProcessItemControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -50,31 +49,48 @@ public class BuyControl extends HttpServlet {
                 }
             }
         }
-        String num = request.getParameter("num");
-        String id = request.getParameter("id");
-        // nếu chạy lần đầu 
-        if (txt.isEmpty()) {
-            txt = id + ":" + num;
-        } else {//đã có sản phẩm trong giỏ hàng
-            String[] products = txt.split(".");
-            boolean isExist = false;
-            for (int i = 0; i < products.length; i++) {
-                String product = products[i];
-                if (products[0].equals(id)) {
-                    int quantity = Integer.parseInt(products[1]) + 1;
-                    products[i] = id + ":" + quantity;
-                    isExist = true;
-                    break;
+        Cart cart = new Cart(txt, listP);
+        String num_raw = request.getParameter("num");
+        String id_raw = request.getParameter("id");
+        int id, num = 0;
+        try {
+            id = Integer.parseInt(id_raw);
+            num = Integer.parseInt(num_raw);
+            Product p = dao.getProductByID(id_raw);
+            String stock = p.getStock();
+            int numStore = Integer.parseInt(stock);
+            if (num == -1 && (cart.getQuantityByID(id) <= 1)) {
+                cart.removeItem(id);
+            } else {
+                //kiểm tra xem còn đủ hàng ko
+                if (num == 1 && cart.getQuantityByID(id) >= numStore) {
+                    num = 0;
                 }
+                double price = p.getPrice() * 2;
+                CartItem t = new CartItem(p, num, price);
+                cart.addItem(t);
             }
-            txt = txt + "." + id + ":" + num;
+        } catch (Exception e) {
+
+        }
+        List<CartItem> items = cart.getItems();
+        txt = "";
+        //giỏ hàng ko rỗng
+        if (items.size() > 0) {
+            txt = items.get(0).getProduct().getId() +":"+
+                    items.get(0).getQuantity();
+            for (int i = 1; i < items.size(); i++) {
+                txt += "." + items.get(i).getProduct().getId() + ":"
+                        + items.get(i).getQuantity();
+            }
         }
         //tạo cookie "cart"
         Cookie c = new Cookie("cart", txt);
         c.setMaxAge(2 * 24 * 60 * 60);// thời gian  ngày
         response.addCookie(c);//thêm cookie
- 
-        response.sendRedirect("home");
+//        request.setAttribute("cart", cart);
+//        request.getRequestDispatcher("cart.jsp").forward(request, response);
+        response.sendRedirect("show");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -104,7 +120,6 @@ public class BuyControl extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-
     }
 
     /**

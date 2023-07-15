@@ -14,16 +14,16 @@ import Model.Product;
 public class test {
 
     public static void main(String[] args) {
-        ProductDAO p = new ProductDAO();
-        Product pLast = p.getLast();
-
-        //phân trang
-        int count = p.getTotalProductSearchByName("cake");
-        int endPage = count / 6;
-        if (count % 6 != 0) {// có dư thì cộng thêm 1 trang
-            endPage++;
+        String txt = "120:1.120:1.120:1.119:1.122:1.119:1.121:1.119:1.119:1";
+        if (txt != null && txt.length() != 0) {
+            String[] array = txt.split("\\.");
+            // Print each element in the array
+        for (String element : array) {
+            System.out.println(element);
         }
         
-        System.out.println(endPage);
+
+
+        }
     }
 }

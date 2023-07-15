@@ -15,6 +15,9 @@
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+
         <style>
             .gallery-wrap .img-big-wrap img {
                 height: 450px;
@@ -87,6 +90,7 @@
                                 </aside>
                                 <aside class="col-sm-7">
                                     <form name="f" action="" method="post">
+                                        <c:set var="id" value="${detail.id}"/>
                                         <article class="card-body p-5">
                                             <h3 class="title mb-3">${detail.name}</h3>
 
@@ -115,26 +119,30 @@
                                                                                         <dd>Russia, USA, and Europe</dd>
                                                                                     </dl>   item-property-hor .// -->
 
-                                            <hr>
+                                           <!-- <hr>
                                             <div class="row">
                                                 <div class="col-sm-5">
                                                     <dl class="param param-inline">
                                                         <dt>Quantity: </dt>
                                                         <dd>
-                                                            <!-- <select class="form-control form-control-sm" style="width:70px;">
+                                                           <select class="form-control form-control-sm" style="width:70px;">
                                                                 <option> 1 </option>
                                                                 <option> 2 </option>
                                                                 <option> 3 </option>
-                                                            </select> -->
+                                                            </select> 
                                                             <input type="number" name="num" value="1" class="form-control form-control-sm" style="width:70px;"/>
                                                         </dd>
-                                                    </dl>  <!-- item-property .// -->
-                                                </div> <!-- col.// -->
+                                                    </dl>  
+                                                </div> 
 
-                                            </div> <!-- row.// -->
-                                            <hr>
-                                            <a href="#" class="btn btn-lg button8 text-uppercase"> Buy now </a>
-                                            <a href="#" class="btn btn-lg button1 text-uppercase"> <i class="fas fa-shopping-cart"></i> Add to cart </a>
+                                            </div> <!-- row.// 
+                                            
+                                           
+                                            <hr> -->
+
+                                            <a href="buynow?num=1&id=${detail.id}" class="btn btn-lg button8 text-uppercase"> Buy now </a>
+                                            <a href="buy?num=1&id=${detail.id}" class="btn btn-lg button8 text-uppercase">Add to cart</a>
+                                           <!-- <input type="button" onclick="buy('${detail.id}')" value="Add to cart" class="btn btn-lg button1 text-uppercase">  </input>-->
                                         </article> <!-- card-body.// -->
 
                                     </form>
@@ -152,7 +160,7 @@
 </html>
 <script type="text/javascript">
     function buy(id) {
-        var m = document.f.num.values;
+        var m = document.f.num.value;
         document.f.action = "buy?id" + id + "&num=" + m;
         document.f.submit();
     }

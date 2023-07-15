@@ -42,12 +42,11 @@
                                         <p class="card-text show_txt">${o.title}</p>
                                         <div class="row">
                                             <div class="col">
-                                                <p class="btn btn-block button button1">${o.price*2}$</p>
+                                                <a href="buynow?num=1&id=${o.id}"  class="btn btn-success btn-block button button1">${o.price*2} $</a>
                                             </div>
                                             <div class="col">
-                                               <!-- <a href="AddToCart?pids=${o.id}&quantity=1" class="btn btn-success btn-block button button8">Add to cart</a -->
-                                                <input type="button" class="btn btn-success btn-block button button8" onclick="buy('id')" value="Add to cart" />
-                                                                                                    <!-- khi click thì gọi đến "buy" và truyền vào id -->
+                                                <a href="buy?num=1&id=${o.id}"  class="btn btn-success btn-block button button8">Add to cart</a>
+                                               
                                             </div>
                                         </div>
                                     </div>
@@ -84,5 +83,11 @@
     </body>
 </html>
 
-
+<script type="text/javascript">
+    function buy(id) {
+        var m = document.f.num.values;
+        document.f.action = "buy?id" + id + "&num=" + m;
+        document.f.submit();
+    }
+</script>
 

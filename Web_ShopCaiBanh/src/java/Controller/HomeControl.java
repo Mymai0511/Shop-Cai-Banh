@@ -52,6 +52,9 @@ public class HomeControl extends HttpServlet {
         Product pLast = p.getLast();
         request.setAttribute("p", pLast);
 
+        // cho cart
+        List<Product> listAll = p.getAll();
+
         // phân trang
         if (indexPaging == null) {
             indexPaging = "1";
@@ -105,7 +108,7 @@ public class HomeControl extends HttpServlet {
         }
 
         //tạo 1 cart chứa các sản phẩm có trong txt-cookie"cart". Từ txt và list<product>
-        Cart cart = new Cart(txt, listP);
+        Cart cart = new Cart(txt, listAll);
         //list<item> có trong cart và đếm số lượng
         List<CartItem> listItem = cart.getItems();
         int n;
@@ -122,7 +125,6 @@ public class HomeControl extends HttpServlet {
         request.setAttribute("tagC", cateID);
         request.setAttribute("txtS", txtSearch);
         request.getRequestDispatcher("home.jsp").forward(request, response);
-       
 
     }
 

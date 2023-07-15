@@ -6,8 +6,6 @@
 package Controller;
 
 import DAL.ProductDAO;
-import Model.Cart;
-import Model.CartItem;
 import Model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author DELL
  */
-public class ShopServlet extends HttpServlet {
+public class BuyNowControl extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -34,19 +32,46 @@ public class ShopServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ShopServlet</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ShopServlet at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        ProductDAO dao = new ProductDAO();
+        List<Product> listP = dao.getAll();
+        Cookie[] arr = request.getCookies();
+        String txt = "";
+        if (arr != null) {
+            for (Cookie o : arr) { // lấy ra cookie có tên là cart rồi cộng thêm sản phẩm mới vào
+                if (o.getName().equals("cart")) {
+                    txt += o.getValue();
+                    o.setMaxAge(0);//xóa cookie o đi
+                    response.addCookie(o);
+                    break;
+                }
+            }
         }
-    } 
+        String num = request.getParameter("num");
+        String id = request.getParameter("id");
+        // nếu chạy lần đầu 
+        if (txt.isEmpty()) {
+            txt = id + ":" + num;
+        } else {//đã có sản phẩm trong giỏ hàng
+            String[] products = txt.split(".");
+            boolean isExist = false;
+            for (int i = 1; i < products.length; i++) {
+                String product = products[i];
+                if (products[0].equals(id)) {
+                    int quantity = Integer.parseInt(products[1]) + 1;
+                    products[i] = id + ":" + quantity;
+                    isExist = true;
+                    break;
+                }
+            }
+            txt = txt + "." + id + ":" + num;
+        }
+        //tạo cookie "cart"
+        Cookie c = new Cookie("cart", txt);
+        c.setMaxAge(2 * 24 * 60 * 60);// thời gian  ngày
+        response.addCookie(c);//thêm cookie
+ 
+        response.sendRedirect("show");
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
@@ -59,31 +84,7 @@ public class ShopServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        ProductDAO dao = new ProductDAO();
-        List<Product> listP = dao.getAll();
-        Cookie[] arr = request.getCookies();
-        String txt = "";
-        if (arr!=null) {
-            for(Cookie o:arr){ // lấy ra cookie có tên là cart rồi truyền vào txt 
-                if(o.getName().equals("cart")){
-                    txt+=o.getValue();
-                }
-            }
-        }
-        
-        //tạo 1 cart chứa các sản phẩm có trong txt-cookie"cart". Từ txt và list<product>
-        Cart cart = new Cart (txt, listP);
-        //list<item> có trong cart và đếm số lượng
-        List<CartItem> listItem = cart.getItems();
-        int n;
-        if (listItem!= null) {
-            n= listItem.size();
-        } else {
-            n=0;
-        }
-        request.setAttribute("size", n);
-        request.setAttribute("listP", listP);
-        request.getRequestDispatcher(.....).forward(request, response);
+        processRequest(request, response);
     } 
 
     /** 
