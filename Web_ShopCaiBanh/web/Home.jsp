@@ -19,9 +19,9 @@
                     <div class="col">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="home">Trang chủ</a></li>
-                                <li class="breadcrumb-item"><a href="#">Danh mục</a></li>
-                                <li class="breadcrumb-item active" aria-current="#">Sub-category</li>
+                                <li class="breadcrumb-item"><a href="home">Home</a></li>
+                          <!--    <li class="breadcrumb-item"><a href="#">Danh mục</a></li>
+                                <li class="breadcrumb-item active" aria-current="#">Sub-category</li>-->
                             </ol>
                         </nav>
                     </div>

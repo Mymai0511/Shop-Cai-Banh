@@ -27,10 +27,23 @@
                     </li>
                 </c:if>
 
+                <c:if test="${sessionScope.acc.isSell == true}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="managerorder">Manager Order</a>
+                    </li>
+                </c:if>
+
                 <c:if test="${sessionScope.acc != null}">
                     <li class="nav-item">
-                        <a class="nav-link" href="loadaccount?aid=${sessionScope.acc.id}">Hello ${sessionScope.acc.name}</a>
+                        <a class="nav-link" href="loadprofile?aid=${sessionScope.acc.id}">Hello ${sessionScope.acc.name}</a>
                     </li>
+                    <c:if test="${sessionScope.acc.isSell != true}">
+                        <li class="nav-item">
+                            <a class="nav-link" href="LoadOrder?aid=${sessionScope.acc.id}">My orders</a>
+
+                        </li>
+                    </c:if>
+
                     <li class="nav-item">
                         <a class="nav-link" href="logout">Logout</a>
                     </li>
@@ -50,6 +63,7 @@
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
+
                 </div>
                 <a class="btn btn-success buttoncard btn-sm ml-3" href="show">
                     <i class="fa fa-shopping-cart"></i> Cart

@@ -10,10 +10,31 @@ package Model;
  * @author Admin
  */
 public class OrderDetail {
-
+    private String pName;
     private int id;
     private int oID, pID, quantity;
     private double price;
+
+    public OrderDetail(String pName, int pID, int quantity, double price) {
+        this.pName = pName;
+        this.pID = pID;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
+    public String getpName() {
+        return pName;
+    }
+
+    public void setpName(String pName) {
+        this.pName = pName;
+    }
+
+    public OrderDetail(int pID, int quantity, double price) {
+        this.pID = pID;
+        this.quantity = quantity;
+        this.price = price;
+    }
 
     public OrderDetail(int id, int oID, int pID, int quantity, double price) {
         this.id = id;

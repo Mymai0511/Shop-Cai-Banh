@@ -1,8 +1,8 @@
-
+drop table Orders
 create table Orders(
 	order_id int identity(1,1) primary key,
 	user_id int,
-	order_date DATETIME,
+	order_date DATE,
 	total float,
 	notes nvarchar(200)
 );
@@ -15,11 +15,6 @@ create table OrderDetail(
 	quantity int
 );
 
-create table Roles
-(
-	role_id int identity(1,1) primary key,
-	role_name nvarchar(50) not null
-);
 
 create table Users(
 	user_id int identity(1,1) primary key,

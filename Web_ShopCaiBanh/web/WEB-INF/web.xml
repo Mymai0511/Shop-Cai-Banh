@@ -88,6 +88,22 @@
         <servlet-name>CheckoutControl</servlet-name>
         <servlet-class>Controller.CheckoutControl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ManagerOrder</servlet-name>
+        <servlet-class>Controller.ManagerOrder</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadProfile</servlet-name>
+        <servlet-class>Controller.LoadProfile</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadOrder</servlet-name>
+        <servlet-class>Controller.LoadOrder</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadDetailOrder</servlet-name>
+        <servlet-class>Controller.LoadDetailOrder</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeControl</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -176,9 +192,28 @@
         <servlet-name>CheckoutControl</servlet-name>
         <url-pattern>/checkout</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManagerOrder</servlet-name>
+        <url-pattern>/managerorder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadProfile</servlet-name>
+        <url-pattern>/loadprofile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadOrder</servlet-name>
+        <url-pattern>/LoadOrder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadDetailOrder</servlet-name>
+        <url-pattern>/loaddetailorder</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <welcome-file-list>
+        <welcome-file>login.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>

@@ -54,7 +54,7 @@ public class DeleteItemControl extends HttpServlet {
         String out = "";
         for (int i = 0; i < ids.length; i++) {
             String[] s = ids[i].split(":");
-            if (!s[0].equals(id)) {
+            if (!s[0].equals(id)) {//giữ lại các phần tử ko trùng id
                 if (out.isEmpty()) {
                     out = ids[i];
                 } else {

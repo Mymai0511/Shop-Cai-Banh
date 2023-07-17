@@ -22,6 +22,13 @@ public class Order {
     public Order() {
     }
 
+    public Order(int id, int cID, String Date, double totalmoney) {
+        this.id = id;
+        this.cID = cID;
+        this.Date = Date;
+        this.totalmoney = totalmoney;
+    }
+
     public Order(int id, int cID, String Date, double totalmoney, String notes) {
         this.id = id;
         this.cID = cID;
