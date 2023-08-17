@@ -39,7 +39,7 @@
                     </li>
                     <c:if test="${sessionScope.acc.isSell != true}">
                         <li class="nav-item">
-                            <a class="nav-link" href="LoadOrder?aid=${sessionScope.acc.id}">My orders</a>
+                            <a class="nav-link" href="LoadOrder?aid=${sessionScope.acc.id}">My Orders</a>
 
                         </li>
                     </c:if>

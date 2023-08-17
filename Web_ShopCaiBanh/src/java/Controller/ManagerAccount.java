@@ -4,20 +4,20 @@
  */
 package Controller;
 
-import DAL.CategoryDAO;
-import DAL.ProductDAO;
-import DAL.UserDao;
-import Model.Category;
-import Model.Product;
-import Model.User;
+import Model.CategoryDAO;
+import Model.ProductDAO;
+import Model.UserDao;
+import Entity.Category;
+import Entity.Product;
+import Entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *

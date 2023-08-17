@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DAL;
+package Model;
 
-import Model.Category;
-import Model.Product;
+import Entity.Category;
+import Entity.Product;
 import java.util.List;
 import java.sql.PreparedStatement;// lệnh có đối số
 import java.sql.ResultSet;

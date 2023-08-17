@@ -4,8 +4,8 @@
  */
 package Controller;
 
-import DAL.ProductDAO;
-import Model.Product;
+import Model.ProductDAO;
+import Entity.Product;
 
 /**
  *

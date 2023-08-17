@@ -2,14 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DAL;
+package Model;
 
-import Model.Cart;
-import Model.CartItem;
-import Model.Order;
-import Model.OrderDetail;
-import Model.Product;
-import Model.User;
+import Entity.Cart;
+import Entity.CartItem;
+import Entity.Order;
+import Entity.OrderDetail;
+import Entity.Product;
+import Entity.User;
 import java.util.List;
 import java.sql.PreparedStatement;// lệnh có đối số
 import java.sql.ResultSet;
@@ -45,6 +45,8 @@ public class OrderDAO extends DBContext {
         return list;
     }
 
+    
+    
     public List<OrderDetail> getDetailByOrdersID(String oid) {
         List<OrderDetail> list = new ArrayList<>();
         String sql = "SELECT  quantity, OrderDetail.product_id,  OrderDetail.price, Product.product_name FROM Product INNER JOIN OrderDetail \n"
@@ -66,6 +68,8 @@ public class OrderDAO extends DBContext {
         }
         return list;
     }
+    
+    
 
     public List<Order> getOrderById(String id) {
         List<Order> list = new ArrayList<>();

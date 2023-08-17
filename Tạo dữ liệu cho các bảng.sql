@@ -1,4 +1,5 @@
 ﻿
+use lazycake;
 SET IDENTITY_INSERT Users off
 GO
 INSERT INTO Users ( user_name, email, password, address, gender, phone, isSell, isAdmin) values (N'maimy', 'mymie797@gmail.com', '12345', N'tỉnh Nam Đinh', 1, '0948766710',1, 1);

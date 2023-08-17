@@ -1,3 +1,6 @@
+
+CREATE DATABASE lazycake;
+use lazycake;
 drop table Orders
 create table Orders(
 	order_id int identity(1,1) primary key,
