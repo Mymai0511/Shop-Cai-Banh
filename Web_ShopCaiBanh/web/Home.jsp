@@ -20,8 +20,6 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="home">Home</a></li>
-                          <!--    <li class="breadcrumb-item"><a href="#">Danh mục</a></li>
-                                <li class="breadcrumb-item active" aria-current="#">Sub-category</li>-->
                             </ol>
                         </nav>
                     </div>
@@ -29,7 +27,7 @@
             </div>
             <div class="container">
                 <div class="row">
-                <jsp:include page = "left.jsp" ></jsp:include>
+                <jsp:include page = "adminLeft.jsp" ></jsp:include>
                     <div class="col-sm-9">
                         <div class="row">
                             <!-- Hiện thị menu- lấy dữ liệu từ sql -->
@@ -54,40 +52,5 @@
                             </div>
                         </c:forEach>
                     </div>
-                    <div class="clearfix">
-                        <ul class="pagination">
-                            <c:forEach begin="1"  end="${endP}" var="i">
-                                <li class="page-item  ${tagP == i ?  "active":"" }">
-                                    <c:if test="${txtS==null}">
-                                        <c:if test="${tagC==null}">
-                                            <a href="home?index=${i}" class="page-link">${i}</a>
-                                        </c:if>
-                                        <c:if test="${tagC!=null}">
-                                            <a href="home?index=${i}&cid=${tagC}" class="page-link">${i}</a>
-                                        </c:if>
-                                    </c:if>
 
-                                    <c:if test="${txtS!=null}">
-                                        <a href="home?index=${i}&textSearch=${txtS}" class="page-link">${i}</a>
-                                    </c:if>   
-                                </li>
-                            </c:forEach >
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <jsp:include page = "footer.jsp" ></jsp:include>
-    </body>
-</html>
-
-<script type="text/javascript">
-    function buy(id) {
-        var m = document.f.num.values;
-        document.f.action = "buy?id" + id + "&num=" + m;
-        document.f.submit();
-    }
-</script>
 

@@ -1,13 +1,20 @@
+DROP TABLE OrderDetail;
+DROP TABLE Orders;
+DROP TABLE Users;
+DROP TABLE Product;
+
+DROP TABLE Category;
 
 CREATE DATABASE lazycake;
 use lazycake;
-drop table Orders
+
 create table Orders(
 	order_id int identity(1,1) primary key,
 	user_id int,
 	order_date DATE,
 	total float,
-	notes nvarchar(200)
+	status char(10)
+
 );
 
 create table OrderDetail(
@@ -28,7 +35,7 @@ create table Users(
 	gender BIT	  ,
 	phone char(10),
 	isAdmin BIT,
-	isSell BIT
+	isExist BIT
 	
 );
 
@@ -47,6 +54,7 @@ create table Product(
 	title nvarchar(500) ,
 	description nvarchar(200)  ,
 	category_id int NOT NULL,
-	foreign key (category_id) references Category(category_id)
+	foreign key (category_id) references Category(category_id),
+	isExist BIT
 );
 
